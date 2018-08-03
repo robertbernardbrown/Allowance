@@ -4,11 +4,11 @@ import "react-bootstrap";
 
 
 const Header = () => (
-    <div className="jumbotron header-div">
-        <div className="container">
-            <a href="/"><h1 className="header-text text-center">QuizCat</h1></a>
+    <header className="jumbotron header-div">
+        <div className="header">
+            <a href="/"><h1 className="header-text text-center">Allowance</h1></a>
         </div>
-    </div>
+    </header>
 )
 
 export default Header;
