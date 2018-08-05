@@ -1,23 +1,17 @@
 {
-  "name": "mern",
-  "version": "1.0.0",
-  "description": "Mern Demo",
-  "main": "server.js",
-  "scripts": {
-    "server": "node server.js",
-    "client": "cd client && npm run start",
-    "start": "./node_modules/.bin/concurrently \"./node_modules/.bin/nodemon\" \"npm run client\"",
-    "build": "cd client && npm run build",
-    "deploy": "yarn build && git add . && git commit -m \"Building for production\" && git push heroku master",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "concurrently": "^3.5.0",
-    "nodemon": "^1.11.0"
-  },
+  "name": "allowance-app",
+  "version": "0",
+  "flat": true,
+  "description": "An app to track your monthly budget",
+  "main": "index.html",
+  "repository": "",
+  "author": "Bob",
+  "license": "",
   "dependencies": {
-    "express": "^4.15.4"
+    "@polymer/polymer": "^3.0.0-pre.12",
+    "@webcomponents/webcomponentsjs": "^1.0.20"
+  },
+  "resolutions": {
+    "@webcomponents/webcomponentsjs": "1.0.20"
   }
 }
