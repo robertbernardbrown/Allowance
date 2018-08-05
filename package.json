@@ -1,15 +1,13 @@
 {
-  "name": "polymer-3-first-element",
-  "version": "3.0.0-pre.12",
+  "name": "allowance-app",
+  "version": "0",
   "flat": true,
-  "description": "Build your first element with Polymer 3.0!",
+  "description": "An app to track your monthly budget",
   "main": "index.html",
-  "repository": "https://github.com/PolymerLabs/polymer-3-first-element.git",
-  "author": "The Polymer Project Authors",
-  "license": "BSD-3-Clause",
+  "repository": "",
+  "author": "Bob",
+  "license": "",
   "dependencies": {
-    "@polymer/iron-icon": "^3.0.0-pre.12",
-    "@polymer/iron-icons": "^3.0.0-pre.12",
     "@polymer/polymer": "^3.0.0-pre.12",
     "@webcomponents/webcomponentsjs": "^1.0.20"
   },
