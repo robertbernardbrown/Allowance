@@ -9,6 +9,7 @@ class HeaderBanner extends PolymerElement {
           background: grey;
           justify-content: center;
           align-content: center;
+          width: 100%;
         }
         h1 {
           color: white;

@@ -11,12 +11,14 @@ class FooterBanner extends PolymerElement {
           align-content: center;
           position: absolute;
           width: 100%;
+          left: 50%;
+          margin-left: -50%;
           bottom: 0;
         }
         h1 {
           color: white;
           margin-left: 2%;
-          font-size: 5em;
+          font-size: 2em;
         }
       </style>
 
