@@ -1,7 +1,7 @@
-import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
-import "../components/header";
-import "../components/footer";
-import "../components/signup";
+import { PolymerElement, html } from "../node_modules/@polymer/polymer/polymer-element.js";
+import "../components/header.js";
+import "../components/footer.js";
+import "../components/signup.js";
 
 class WelcomePage extends PolymerElement {
   static get template() {
@@ -31,10 +31,11 @@ class WelcomePage extends PolymerElement {
         <footer-banner></footer-banner>
     `;
   }
- 
+
   constructor() {
     super();
   }
+
 }
 
 customElements.define('welcome-page', WelcomePage);
