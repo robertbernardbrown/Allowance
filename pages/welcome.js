@@ -1,7 +1,7 @@
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
-import "../components/header";
-import "../components/footer";
-import "../components/signup";
+// import "../components/header";
+// import "../components/footer";
+// import "../components/signup";
 
 class WelcomePage extends PolymerElement {
   static get template() {
