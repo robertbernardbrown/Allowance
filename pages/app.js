@@ -2,9 +2,9 @@ import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 import "../node_modules/@polymer/app-route/app-location";
 import "../node_modules/@polymer/iron-pages/iron-pages";
 import "../node_modules/@polymer/app-route/app-route";
-// import "../components/header"
-// import "../components/footer";
-// import "../components/signup";
+import "./header.js"
+import "./footer.js";
+import "./signup";
 import "./welcome";
 
 class App extends PolymerElement {
