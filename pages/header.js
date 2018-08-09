@@ -16,10 +16,13 @@ class HeaderBanner extends PolymerElement {
           margin-left: 2%;
           font-size: 5em;
         }
+        header > a {
+          text-decoration: none
+        }
       </style>
 
       <header id="header">
-        <h1>Allowance</h1>
+        <a href="/"><h1>Allowance</h1></a>
       </header>
     `;
   }
