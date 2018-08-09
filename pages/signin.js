@@ -1,14 +1,14 @@
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 
-class SignupPage extends PolymerElement {
+class SigninPage extends PolymerElement {
   static get template() {
     return html`
       <style>
        
       </style>
 
-      <main id="sign-up">
-        <h1>SIGNUP</h1>
+      <main id="sign-in">
+        <h1>SIGNIN</h1>
       </main>
     `;
   }
@@ -18,4 +18,4 @@ class SignupPage extends PolymerElement {
   }
 }
 
-customElements.define('signup-page', SignupPage);
+customElements.define('signin-page', SigninPage);

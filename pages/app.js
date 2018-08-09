@@ -6,17 +6,13 @@ import "./header.js"
 import "./footer.js";
 import "./signup";
 import "./welcome";
+import "./signin";
 
 class App extends PolymerElement {
     static get template() {
         return html`
             <style>
-            * {
-                background: yellow
-            }
-            h1 {
-                color: red
-            }
+            
             </style>
 
             <app-location route="{{route}}"></app-location>
@@ -27,13 +23,13 @@ class App extends PolymerElement {
             data="{{routeData}}"
             tail="{{subroute}}"></app-route>
 
-            <h1>{{route.path}}</h1>
-            <h1>{{routeData.view}}</h1>
-
-            <iron-pages selected="[[routeData.view]]" attr-for-selected="name" selected-attribute="visible" default-selected="shit">
-                <welcome-page name="welcome" route="{{subroute}}"></welcome-page>
-                <signup-page name="signup" route="{{subroute}}"></signup-page>
+            <header-banner></header-banner>
+            <iron-pages selected="[[routeData.view]]" attr-for-selected="name" selected-attribute="visible" default-selected="">
+                <welcome-page name="" route="{{subroute}}"></welcome-page>
+                <signup-page name="sign-up" route="{{subroute}}"></signup-page>
+                <signin-page name="sign-in" route="{{subroute}}"></signin-page>
             </iron-pages>
+            <footer-banner></footer-banner>
         `;
     }
  

@@ -1,19 +1,29 @@
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
-// import "../components/header";
-// import "../components/footer";
-// import "../components/signup";
 
 class WelcomePage extends PolymerElement {
   static get template() {
     return html`
         <style>
-            #button-group {
+            main {
                 display: flex;
+                align-items: center;
+                flex-direction: column;
+            }
+            main > * {
+                display:flex;
+                flex: 1 auto;
                 justify-content: center;
+                color: white;
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 4em
+            }
+            input {
+                font-size: 50px
             }
         </style>
 
-        <header-banner></header-banner>
             <main>
                 <h2>Welcome to Allowance!</h1>
                     <p>Allowance is an app to help you keep track of your funds in the simplest way possible</p>
@@ -28,7 +38,6 @@ class WelcomePage extends PolymerElement {
                         </form>
                     </div>
             </main>
-        <footer-banner></footer-banner>
     `;
   }
  
