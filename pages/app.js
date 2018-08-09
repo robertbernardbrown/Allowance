@@ -24,7 +24,7 @@ class App extends PolymerElement {
             tail="{{subroute}}"></app-route>
 
             <header-banner></header-banner>
-            <iron-pages selected="[[routeData.view]]" attr-for-selected="name" selected-attribute="visible" default-selected="">
+            <iron-pages selected="[[routeData.view]]" attr-for-selected="name" default-selected="">
                 <welcome-page name="" route="{{subroute}}"></welcome-page>
                 <signup-page name="sign-up" route="{{subroute}}"></signup-page>
                 <signin-page name="sign-in" route="{{subroute}}"></signin-page>

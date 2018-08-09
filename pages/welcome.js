@@ -20,7 +20,10 @@ class WelcomePage extends PolymerElement {
                 font-size: 4em
             }
             input {
-                font-size: 50px
+                font-size: 50px;
+            }
+            .welcome-btns {
+                margin: 5px
             }
         </style>
 
@@ -30,12 +33,8 @@ class WelcomePage extends PolymerElement {
                     <p>Post a budget and then track your transactions.</p>
                     <p>That's it - no fancy bank connections, just a good ol' fashioned budget tracker</p>
                     <div id="button-group">
-                        <form action="/sign-up">
-                            <input type="submit" value="Sign-Up" />
-                        </form>
-                        <form action="/sign-in">
-                            <input type="submit" value="Sign-In" />
-                        </form>
+                            <a class="welcome-btns" href="/sign-up">Sign-up</a>
+                            <a class="welcome-btns" href="/sign-in">Sign-in</a>
                     </div>
             </main>
     `;
