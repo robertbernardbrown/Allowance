@@ -20,16 +20,26 @@ class SignupPage extends PolymerElement {
       <main id="sign-up">
         <form>
           <label for="uname"><b>Username</b></label>
-          <input type="text" placeholder="Enter Username" name="uname" required>
+          <input id="uname" type="text" placeholder="Enter Username" name="uname" required>
       
-          <label for="psw"><b>Password</b></label>
-          <input type="password" placeholder="Enter Password" name="psw" required>
-          
-          <button id="submit-btn" type="submit">Sign-Up</button>
+          <label for="email"><b>Email</b></label>
+          <input id="email" type="email" placeholder="Enter Email" name="email" required>  
 
+          <label for="psw"><b>Password</b></label>
+          <input id="pwd" type="password" placeholder="Enter Password" name="psw" required>
+          
+          <button on-click="signUp" id="submit-btn" type="submit">Sign-Up</button>
         </form>
       </main>
     `;
+  }
+
+  signUp () {
+    let uname, email, pwd;
+    uname = document.getElementById("uname");
+    email = document.getElementById("email");
+    pwd   = document.getElementById("pwd");
+    console.log(uname, email, pwd)
   }
  
   constructor() {
