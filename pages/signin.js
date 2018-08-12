@@ -13,20 +13,20 @@ class SigninPage extends PolymerElement {
         display:flex;
         flex: 1 auto;
         justify-content: center;
-        font-size: 2em;
         }
     </style>
 
     <main id="sign-up">
         <form>
-        <label for="uname"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="uname" required>
-    
-        <label for="psw"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" required>
-        
-        <button id="submit-btn" type="submit">Sign-In</button>
+            <paper-input label="username">
+                <iron-icon icon="supervisor-account" slot="prefix"></iron-icon>
+            </paper-input>
 
+            <paper-input label="password">
+                <iron-icon icon="lock" slot="prefix"></iron-icon>
+            </paper-input>
+        
+            <button id="submit-btn" type="submit">Sign-In</button>
         </form>
     </main>
     `;

@@ -9,7 +9,9 @@
   "license": "",
   "dependencies": {
     "@polymer/app-route": "^3.0.0-pre.20",
+    "@polymer/iron-icons": "^3.0.0-pre.21",
     "@polymer/iron-pages": "^3.0.0-pre.21",
+    "@polymer/paper-input": "^3.0.0-pre.21",
     "@polymer/polymer": "^3.0.0-pre.12",
     "@webcomponents/webcomponentsjs": "^1.0.20"
   },
