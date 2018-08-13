@@ -9,10 +9,10 @@ class Dashboard extends PolymerElement {
             </style>
 
             <main>
-                <h1>Hip</h1>
-                <dom-repeat items="{{budgets}}" as="budgets">
+                <dom-repeat items="{{budgets}}" as="budgetData">
                     <template>
-                        <div><span>{{budgets.test}}</span></div>
+                        <div>Budget: {{budgetData.budget}}</div>
+                        <div>Month: {{budgetData.budgetDate}}</div>
                     </template>
                 </dom-repeat>
             </main>
@@ -23,13 +23,27 @@ class Dashboard extends PolymerElement {
         return {
             budgets: {
                 type: Array,
-                value: () => [{test:"pooky"}]
+                value: () => []
             }
         }
+    }
+
+    populateBudgets () {
+        fetch("https://allowance-api.herokuapp.com/api/budgets/1")
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            data.result.map((cur, i) => {
+                console.log(cur)
+                this.push("budgets", cur)
+            })
+        })
+        .catch(err => console.log(err))
     }
  
     constructor() {
         super();
+        this.populateBudgets();
     }
 }
 
