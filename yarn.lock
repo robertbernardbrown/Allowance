@@ -41,6 +41,14 @@
     "@polymer/iron-a11y-keys-behavior" "^3.0.0-pre.21"
     "@polymer/polymer" "^3.0.0"
 
+"@polymer/iron-checked-element-behavior@^3.0.0-pre.21":
+  version "3.0.0-pre.21"
+  resolved "https://registry.yarnpkg.com/@polymer/iron-checked-element-behavior/-/iron-checked-element-behavior-3.0.0-pre.21.tgz#778c66d07e8273299700ebd53fb849fd65d4b3a6"
+  dependencies:
+    "@polymer/iron-form-element-behavior" "^3.0.0-pre.21"
+    "@polymer/iron-validatable-behavior" "^3.0.0-pre.21"
+    "@polymer/polymer" "^3.0.0"
+
 "@polymer/iron-flex-layout@^3.0.0-pre.21":
   version "3.0.0-pre.21"
   resolved "https://registry.yarnpkg.com/@polymer/iron-flex-layout/-/iron-flex-layout-3.0.0-pre.21.tgz#064bccb85ec2091b66366970e8867d3de7bb273d"
@@ -123,6 +131,24 @@
     "@polymer/iron-meta" "^3.0.0-pre.21"
     "@polymer/polymer" "^3.0.0"
 
+"@polymer/paper-behaviors@^3.0.0-pre.21":
+  version "3.0.0-pre.21"
+  resolved "https://registry.yarnpkg.com/@polymer/paper-behaviors/-/paper-behaviors-3.0.0-pre.21.tgz#be01b8a101c221fc3a100350028cc55107b5db14"
+  dependencies:
+    "@polymer/iron-behaviors" "^3.0.0-pre.21"
+    "@polymer/iron-checked-element-behavior" "^3.0.0-pre.21"
+    "@polymer/paper-ripple" "^3.0.0-pre.21"
+    "@polymer/polymer" "^3.0.0"
+
+"@polymer/paper-button@^3.0.0-pre.21":
+  version "3.0.0-pre.21"
+  resolved "https://registry.yarnpkg.com/@polymer/paper-button/-/paper-button-3.0.0-pre.21.tgz#fa3531b0fe3fe45371249fdb27ea7763a53aab80"
+  dependencies:
+    "@polymer/iron-flex-layout" "^3.0.0-pre.21"
+    "@polymer/paper-behaviors" "^3.0.0-pre.21"
+    "@polymer/paper-styles" "^3.0.0-pre.21"
+    "@polymer/polymer" "^3.0.0"
+
 "@polymer/paper-input@^3.0.0-pre.21":
   version "3.0.0-pre.21"
   resolved "https://registry.yarnpkg.com/@polymer/paper-input/-/paper-input-3.0.0-pre.21.tgz#637ccb08c53604bf8334f8c0b7f764e509afb424"
@@ -133,6 +159,13 @@
     "@polymer/iron-form-element-behavior" "^3.0.0-pre.21"
     "@polymer/iron-input" "^3.0.0-pre.21"
     "@polymer/paper-styles" "^3.0.0-pre.21"
+    "@polymer/polymer" "^3.0.0"
+
+"@polymer/paper-ripple@^3.0.0-pre.21":
+  version "3.0.0-pre.21"
+  resolved "https://registry.yarnpkg.com/@polymer/paper-ripple/-/paper-ripple-3.0.0-pre.21.tgz#9375760af161c142591b3a0a1d4db299fb174067"
+  dependencies:
+    "@polymer/iron-a11y-keys-behavior" "^3.0.0-pre.21"
     "@polymer/polymer" "^3.0.0"
 
 "@polymer/paper-styles@^3.0.0-pre.21":

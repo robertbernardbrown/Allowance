@@ -2,7 +2,7 @@ import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 import "../node_modules/@polymer/paper-input/paper-input";
 import "../node_modules/@polymer/iron-icon/iron-icon";
 import "../node_modules/@polymer/iron-icons/iron-icons";
-import { Polymer } from '../node_modules/@polymer/polymer/polymer-legacy';
+import "../node_modules/@polymer/paper-button/paper-button";
 
 class SignupPage extends PolymerElement {
   static get template() {
@@ -35,7 +35,7 @@ class SignupPage extends PolymerElement {
             <iron-icon icon="lock" slot="prefix"></iron-icon>
           </paper-input>
 
-          <button on-click="signUp" id="submit-btn" type="submit">Sign-Up</button>
+          <paper-button on-click="signUp" id="submit-btn" type="submit" raised>Sign-Up</paper-button>
         </form>
       </main>
     `;
