@@ -28,7 +28,6 @@ class SignupPage extends PolymerElement {
 
           <paper-input label="email" value={{email}} required error-message="Field is required">
             <iron-icon icon="mail" slot="prefix"></iron-icon>
-            <div slot="suffix">@email.com</div>
           </paper-input>
 
           <paper-input label="password" value={{password}} required error-message="Field is required">
@@ -57,7 +56,24 @@ class SignupPage extends PolymerElement {
 
   signUp (e) {
     e.preventDefault();
+    const registerUser = (url = ``, data = {}) => {
+        return fetch(url, {
+            method: "POST",
+            mode: "cors",
+            cache: "no-cache",
+            credentials: "same-origin",
+            headers: {
+                "Content-Type": "application/json; charset=utf-8",
+            },
+            // redirect: "follow", // manual, *follow, error
+            // referrer: "no-referrer", // no-referrer, *client
+            body: JSON.stringify(data),
+        })
+    }
     console.log(this.username, this.email, this.password)
+    registerUser("https://allowance-api.herokuapp.com/api/register", {userName:this.username, userEmail:this.email, userPassword:this.password})
+    .then(res => {console.log(res)})
+    .catch(err => {console.log(err)})
   }
  
   constructor() {
