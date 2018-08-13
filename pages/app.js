@@ -28,6 +28,7 @@ class App extends PolymerElement {
                 <welcome-page name="" route="{{subroute}}"></welcome-page>
                 <signup-page name="sign-up" route="{{subroute}}"></signup-page>
                 <signin-page name="sign-in" route="{{subroute}}"></signin-page>
+                <dashboard-page name="dashboard" route="{{subroute}}"></dashboard-page>
             </iron-pages>
             <footer-banner></footer-banner>
         `;
