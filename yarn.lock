@@ -49,6 +49,21 @@
     "@polymer/iron-validatable-behavior" "^3.0.0-pre.21"
     "@polymer/polymer" "^3.0.0"
 
+"@polymer/iron-dropdown@^3.0.0-pre.21":
+  version "3.0.0-pre.21"
+  resolved "https://registry.yarnpkg.com/@polymer/iron-dropdown/-/iron-dropdown-3.0.0-pre.21.tgz#8393426d62f40a1a90b1a56d7394c6e6c7411f19"
+  dependencies:
+    "@polymer/iron-behaviors" "^3.0.0-pre.21"
+    "@polymer/iron-overlay-behavior" "^3.0.0-pre.21"
+    "@polymer/neon-animation" "^3.0.0-pre.21"
+    "@polymer/polymer" "^3.0.0"
+
+"@polymer/iron-fit-behavior@^3.0.0-pre.21":
+  version "3.0.0-pre.21"
+  resolved "https://registry.yarnpkg.com/@polymer/iron-fit-behavior/-/iron-fit-behavior-3.0.0-pre.21.tgz#c82f545b0ddef2afe95365ff4d4aab21bbf6e766"
+  dependencies:
+    "@polymer/polymer" "^3.0.0"
+
 "@polymer/iron-flex-layout@^3.0.0-pre.21":
   version "3.0.0-pre.21"
   resolved "https://registry.yarnpkg.com/@polymer/iron-flex-layout/-/iron-flex-layout-3.0.0-pre.21.tgz#064bccb85ec2091b66366970e8867d3de7bb273d"
@@ -104,6 +119,15 @@
   dependencies:
     "@polymer/polymer" "^3.0.0"
 
+"@polymer/iron-overlay-behavior@^3.0.0-pre.21":
+  version "3.0.0-pre.21"
+  resolved "https://registry.yarnpkg.com/@polymer/iron-overlay-behavior/-/iron-overlay-behavior-3.0.0-pre.21.tgz#d27144c901f3daf56217baaa2762aa7b87611e82"
+  dependencies:
+    "@polymer/iron-a11y-keys-behavior" "^3.0.0-pre.21"
+    "@polymer/iron-fit-behavior" "^3.0.0-pre.21"
+    "@polymer/iron-resizable-behavior" "^3.0.0-pre.21"
+    "@polymer/polymer" "^3.0.0"
+
 "@polymer/iron-pages@^3.0.0-pre.21":
   version "3.0.0-pre.21"
   resolved "https://registry.yarnpkg.com/@polymer/iron-pages/-/iron-pages-3.0.0-pre.21.tgz#976c5d16542c80c8bedf948b0485423ccfa5d543"
@@ -131,6 +155,14 @@
     "@polymer/iron-meta" "^3.0.0-pre.21"
     "@polymer/polymer" "^3.0.0"
 
+"@polymer/neon-animation@^3.0.0-pre.21":
+  version "3.0.0-pre.21"
+  resolved "https://registry.yarnpkg.com/@polymer/neon-animation/-/neon-animation-3.0.0-pre.21.tgz#5a179b0091b52a32b82aa7a80e6ea8ff2f7d17e8"
+  dependencies:
+    "@polymer/iron-resizable-behavior" "^3.0.0-pre.21"
+    "@polymer/iron-selector" "^3.0.0-pre.21"
+    "@polymer/polymer" "^3.0.0"
+
 "@polymer/paper-behaviors@^3.0.0-pre.21":
   version "3.0.0-pre.21"
   resolved "https://registry.yarnpkg.com/@polymer/paper-behaviors/-/paper-behaviors-3.0.0-pre.21.tgz#be01b8a101c221fc3a100350028cc55107b5db14"
@@ -149,6 +181,22 @@
     "@polymer/paper-styles" "^3.0.0-pre.21"
     "@polymer/polymer" "^3.0.0"
 
+"@polymer/paper-dropdown-menu@^3.0.0-pre.21":
+  version "3.0.0-pre.21"
+  resolved "https://registry.yarnpkg.com/@polymer/paper-dropdown-menu/-/paper-dropdown-menu-3.0.0-pre.21.tgz#b41eceba3704e7d8318aa93c8c34a25d56696513"
+  dependencies:
+    "@polymer/iron-a11y-keys-behavior" "^3.0.0-pre.21"
+    "@polymer/iron-form-element-behavior" "^3.0.0-pre.21"
+    "@polymer/iron-icon" "^3.0.0-pre.21"
+    "@polymer/iron-iconset-svg" "^3.0.0-pre.21"
+    "@polymer/iron-validatable-behavior" "^3.0.0-pre.21"
+    "@polymer/paper-behaviors" "^3.0.0-pre.21"
+    "@polymer/paper-input" "^3.0.0-pre.21"
+    "@polymer/paper-menu-button" "^3.0.0-pre.21"
+    "@polymer/paper-ripple" "^3.0.0-pre.21"
+    "@polymer/paper-styles" "^3.0.0-pre.21"
+    "@polymer/polymer" "^3.0.0"
+
 "@polymer/paper-input@^3.0.0-pre.21":
   version "3.0.0-pre.21"
   resolved "https://registry.yarnpkg.com/@polymer/paper-input/-/paper-input-3.0.0-pre.21.tgz#637ccb08c53604bf8334f8c0b7f764e509afb424"
@@ -158,6 +206,18 @@
     "@polymer/iron-behaviors" "^3.0.0-pre.21"
     "@polymer/iron-form-element-behavior" "^3.0.0-pre.21"
     "@polymer/iron-input" "^3.0.0-pre.21"
+    "@polymer/paper-styles" "^3.0.0-pre.21"
+    "@polymer/polymer" "^3.0.0"
+
+"@polymer/paper-menu-button@^3.0.0-pre.21":
+  version "3.0.0-pre.21"
+  resolved "https://registry.yarnpkg.com/@polymer/paper-menu-button/-/paper-menu-button-3.0.0-pre.21.tgz#fff179416c65f59ad856ed3d01b5d77b329be71a"
+  dependencies:
+    "@polymer/iron-a11y-keys-behavior" "^3.0.0-pre.21"
+    "@polymer/iron-behaviors" "^3.0.0-pre.21"
+    "@polymer/iron-dropdown" "^3.0.0-pre.21"
+    "@polymer/iron-fit-behavior" "^3.0.0-pre.21"
+    "@polymer/neon-animation" "^3.0.0-pre.21"
     "@polymer/paper-styles" "^3.0.0-pre.21"
     "@polymer/polymer" "^3.0.0"
 
@@ -189,3 +249,7 @@
 "@webcomponents/webcomponentsjs@1.0.20", "@webcomponents/webcomponentsjs@^1.0.20":
   version "1.0.20"
   resolved "https://registry.yarnpkg.com/@webcomponents/webcomponentsjs/-/webcomponentsjs-1.0.20.tgz#bac97c9709a3130241da4c2c85710e1dc8775b1c"
+
+web-animations-js@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/web-animations-js/-/web-animations-js-2.3.1.tgz#3a6d9bc15196377a90f8e2803fa5262165b04510"
