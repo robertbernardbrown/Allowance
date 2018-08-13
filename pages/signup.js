@@ -81,7 +81,6 @@ class SignupPage extends PolymerElement {
             body: JSON.stringify(data),
         })
     }
-    console.log(this.username, this.email, this.password)
     registerUser("https://allowance-api.herokuapp.com/api/register", {userName:this.username, userEmail:this.email, userPassword:this.password})
     .then(res => res.json())
     .then(data => {
