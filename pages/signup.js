@@ -18,6 +18,12 @@ class SignupPage extends PolymerElement {
           flex: 1 auto;
           justify-content: center;
         }
+        #hide-response {
+          display: none
+        }
+        #display-response {
+          display: block
+        }
       </style>
 
       <main id="sign-up">
@@ -36,20 +42,27 @@ class SignupPage extends PolymerElement {
 
           <paper-button on-click="signUp" id="submit-btn" type="submit" raised>Sign-Up</paper-button>
         </form>
+
+        <div id="{{messageClass}}">
+          <h2 aria-live="assertive">{{message}}</h2>
+        </div>
       </main>
     `;
   }
 
   static get properties() {
     return {
-      username: {
-        type: String
+      username: {type: String},
+      email: {type: String},
+      password: {type: String},
+      message: {type: String},
+      messageClass: {
+        type: String,
+        value: "hide-response"
       },
-      email: {
-        type: String
-      },
-      password: {
-        type: String
+      successfulRegister: {
+        type: Boolean,
+        value: false
       }
     }
   }
@@ -65,15 +78,17 @@ class SignupPage extends PolymerElement {
             headers: {
                 "Content-Type": "application/json; charset=utf-8",
             },
-            // redirect: "follow", // manual, *follow, error
-            // referrer: "no-referrer", // no-referrer, *client
             body: JSON.stringify(data),
         })
     }
     console.log(this.username, this.email, this.password)
     registerUser("https://allowance-api.herokuapp.com/api/register", {userName:this.username, userEmail:this.email, userPassword:this.password})
-    .then(res => {console.log(res)})
-    .catch(err => {console.log(err)})
+    .then(res => res.json())
+    .then(data => {
+      this.message = data.message;
+      this.messageClass = "display-response"
+    })
+    .catch(err => console.log(err))
   }
  
   constructor() {
