@@ -4,6 +4,7 @@ import "../node_modules/@polymer/paper-input/paper-input";
 import "../node_modules/@polymer/iron-icon/iron-icon";
 import "../node_modules/@polymer/iron-icons/iron-icons";
 import "../node_modules/@polymer/paper-button/paper-button";
+import "../node_modules/@polymer/paper-toast/paper-toast";
 
 class Dashboard extends PolymerElement {
     static get template() {
@@ -42,6 +43,8 @@ class Dashboard extends PolymerElement {
 
                     <paper-button on-click="addBudget" id="budget-btn" type="submit" raised>Add Budget</paper-button>
                 </form>
+
+                <paper-toast id="toast" text="{{message}}"></paper-toast>
             </main>
         `;
     }
@@ -75,6 +78,7 @@ class Dashboard extends PolymerElement {
     }
 
     populateBudgetsProp () {
+        this.set('budgets', []);
         fetch("https://allowance-api.herokuapp.com/api/budgets/1")
         .then(res => res.json())
         .then(data => {
@@ -115,6 +119,8 @@ class Dashboard extends PolymerElement {
             .then(data => {
                 console.log(data);
                 this.message = data.message;
+                this.$.toast.open();
+                this.populateBudgetsProp();
             })
             .catch(err => console.log(err))
     }
