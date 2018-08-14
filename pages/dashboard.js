@@ -24,7 +24,7 @@ class Dashboard extends PolymerElement {
                         <iron-icon icon="add" slot="prefix"></iron-icon>
                     </paper-input>
 
-                    <select>
+                    <select id="monthSelect">
                         <dom-repeat items="[[months]]">
                             <template is="dom-repeat" items="[[months]]" as="months">
                                 <option value="[[months]]">[[months]]</option>
@@ -32,7 +32,7 @@ class Dashboard extends PolymerElement {
                         </dom-repeat>
                     </select>
 
-                    <select>
+                    <select id="yearSelect">
                         <dom-repeat items="[[years]]">
                             <template is="dom-repeat" items="[[years]]" as="years">
                                 <option value="[[years]]">[[years]]</option>
@@ -53,7 +53,6 @@ class Dashboard extends PolymerElement {
                 value: () => []
             },
             budget: String,
-            budgetDate: String,
             message: String,
             months: {
                 type: Array,
@@ -86,8 +85,19 @@ class Dashboard extends PolymerElement {
         .catch(err => console.log(err))
     }
 
-    addBudget () {
+    parseMonth(){
+        for (let i = 0; i < this.months.length; i++){
+            if (this.$.monthSelect.value === this.months[i]){
+                return i;
+            }
+        }
+    }
+
+    addBudget (e) {
             e.preventDefault();
+            let date = new Date();
+            date.setFullYear(this.$.yearSelect.value, this.parseMonth(), 1);
+            console.log(date);
             const addBudget = (url = ``, data = {}) => {
                 return fetch(url, {
                     method: "POST",
@@ -100,7 +110,7 @@ class Dashboard extends PolymerElement {
                     body: JSON.stringify(data),
                 })
             }
-            addBudget("https://allowance-api.herokuapp.com/api/budgets/1", {budget:this.budget, budgetDate:this.budgetDate})
+            addBudget("https://allowance-api.herokuapp.com/api/budgets/1", {budget:this.budget, budgetDate:date})
             .then(res => res.json())
             .then(data => {
                 console.log(data);
