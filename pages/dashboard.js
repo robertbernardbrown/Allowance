@@ -10,17 +10,43 @@ class Dashboard extends PolymerElement {
     static get template() {
         return html`
             <style>
+            .listDisplay {
+                margin: 20px;
+                background: teal;
+                display: flex;
+                flex-direction: column;
+            }
+            .listRow {
+                display: flex;
+                flex-basis: 2;
+            }
+            #addBudgetForm {
+                background: pink;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
+            main {
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+            }
             </style>
 
             <main>
-                <dom-repeat items="{{budgets}}" as="budgetData">
-                    <template>
-                        <div>Budget: {{budgetData.budget}}</div>
-                        <div>Month: {{budgetData.budgetDate}}</div>
-                    </template>
-                </dom-repeat>
-                <h2>Add a budget:<h2/>
-                <form>
+                <div class="listDisplay">
+                    <dom-repeat items="{{budgets}}" as="budgetData">
+                        <template>
+                            <div class="listRow">
+                                <div>Month: {{budgetData.budgetDate}}</div>
+                                <div>Budget: {{budgetData.budget}}</div>
+                            </div>
+                        </template>
+                    </dom-repeat>
+                </div>
+                <h2>Add a budget:</h2>
+                <form id="addBudgetForm">
                     <paper-input label="budget" value={{budget}}>
                         <iron-icon icon="add" slot="prefix"></iron-icon>
                     </paper-input>
