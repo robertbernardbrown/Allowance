@@ -32,6 +32,10 @@ class Dashboard extends PolymerElement {
                 align-items: center;
                 flex-direction: column;
             }
+            #budgetInput {
+                padding-left: 15px;
+                padding-right: 15px
+            }
             </style>
 
             <main>
@@ -47,7 +51,7 @@ class Dashboard extends PolymerElement {
                 </div>
                 <h2>Add a budget:</h2>
                 <form id="addBudgetForm">
-                    <paper-input label="budget" value={{budget}}>
+                    <paper-input id="budgetInput" label="budget" value={{budget}}>
                         <iron-icon icon="add" slot="prefix"></iron-icon>
                     </paper-input>
 
