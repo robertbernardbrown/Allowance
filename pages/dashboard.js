@@ -60,23 +60,25 @@ class Dashboard extends PolymerElement {
                 </dom-repeat>
                 <h2>Add a budget:<h2/>
                 <form>
-                    <paper-input label="budget" value={{addBudget}}>
+                    <paper-input label="budget" value={{budget}}>
                         <iron-icon icon="add" slot="prefix"></iron-icon>
                     </paper-input>
 
                     <div class="dropdown">
-                        <button class="dropbtn">Dropdown 
+                        <button class="dropbtn">Set Month 
                             <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="dropdown-content">
-                            <a href="#">Link 1</a>
-                            <a href="#">Link 2</a>
-                            <a href="#">Link 3</a>
+                            <dom-repeat items="{{months}}" as="months">
+                                <template>
+                                    <a>{{months}}</a>
+                                </template>
+                            </dom-repeat>
                         </div>
                     </div> 
 
                     <div class="dropdown">
-                        <button class="dropbtn">Dropdown 
+                        <button class="dropbtn">Set Year 
                             <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="dropdown-content">
@@ -97,11 +99,18 @@ class Dashboard extends PolymerElement {
             budgets: {
                 type: Array,
                 value: () => []
+            },
+            budget: String,
+            budgetDate: String,
+            message: String,
+            months: {
+                type: Array,
+                value: () => ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
             }
         }
     }
 
-    populateBudgets () {
+    populateBudgetsProp () {
         fetch("https://allowance-api.herokuapp.com/api/budgets/1")
         .then(res => res.json())
         .then(data => {
@@ -111,10 +120,33 @@ class Dashboard extends PolymerElement {
         })
         .catch(err => console.log(err))
     }
+
+    addBudget () {
+            e.preventDefault();
+            const addBudget = (url = ``, data = {}) => {
+                return fetch(url, {
+                    method: "POST",
+                    mode: "cors",
+                    cache: "no-cache",
+                    credentials: "same-origin",
+                    headers: {
+                        "Content-Type": "application/json; charset=utf-8",
+                    },
+                    body: JSON.stringify(data),
+                })
+            }
+            addBudget("https://allowance-api.herokuapp.com/api/budgets/1", {budget:this.budget, budgetDate:this.budgetDate})
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                this.message = data.message;
+            })
+            .catch(err => console.log(err))
+    }
  
     constructor() {
         super();
-        this.populateBudgets();
+        this.populateBudgetsProp();
     }
 }
 
