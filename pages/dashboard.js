@@ -82,9 +82,11 @@ class Dashboard extends PolymerElement {
                             <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="dropdown-content">
-                            <a href="#">Link 1</a>
-                            <a href="#">Link 2</a>
-                            <a href="#">Link 3</a>
+                            <dom-repeat items="{{years}}" as="years">
+                                <template>
+                                    <a>{{years}}</a>
+                                </template>
+                            </dom-repeat>
                         </div>
                     </div> 
 
@@ -106,7 +108,20 @@ class Dashboard extends PolymerElement {
             months: {
                 type: Array,
                 value: () => ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+            },
+            years: {
+                type: Array,
+                value: () => {
+                    const yearArray = [];
+                    const date = new Date();
+                    for (let i=0;i<5;i++){
+                        let year = date.getFullYear() + i;
+                        yearArray.push(year);
+                    }
+                    return yearArray;
+                }
             }
+
         }
     }
 
@@ -143,7 +158,7 @@ class Dashboard extends PolymerElement {
             })
             .catch(err => console.log(err))
     }
- 
+
     constructor() {
         super();
         this.populateBudgetsProp();
