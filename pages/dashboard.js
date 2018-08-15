@@ -17,12 +17,66 @@ class Dashboard extends PolymerElement {
                 align-items: center;
                 flex-direction: column;
             }
+            .listDisplay {
+                margin: 20px;
+                background: teal;
+                display: flex;
+                flex-direction: column;
+            }
+            .listRow {
+                display: flex;
+                flex-basis: 2;
+            }
+            #addBudgetForm {
+                background: pink;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
+            #budgetInput {
+                padding-left: 15px;
+                padding-right: 15px
+            }
             </style>
 
             <main>
-                <budget-list></budget-list>
-                <h2>Add a budget:</h2>
-                <budget-adder></budget-adder>
+            <div class="listDisplay">
+                <dom-repeat items="{{budgets}}" as="budgetData">
+                    <template>
+                        <div class="listRow">
+                            <div>Month: {{budgetData.budgetDate}}</div>
+                            <div>Budget: {{budgetData.budget}}</div>
+                        </div>
+                    </template>
+                </dom-repeat>
+            </div>
+            <h2>Add a budget:</h2>
+            <form id="addBudgetForm">
+                <paper-input id="budgetInput" label="budget" value={{budget}}>
+                    <iron-icon icon="add" slot="prefix"></iron-icon>
+                </paper-input>
+
+                <select id="monthSelect">
+                    <dom-repeat items="[[months]]">
+                        <template is="dom-repeat" items="[[months]]" as="months">
+                            <option value="[[months]]">[[months]]</option>
+                        </template>
+                    </dom-repeat>
+                </select>
+
+                <select id="yearSelect">
+                    <dom-repeat items="[[years]]">
+                        <template is="dom-repeat" items="[[years]]" as="years">
+                            <option value="[[years]]">[[years]]</option>
+                        </template>
+                    </dom-repeat>
+                </select>
+
+                <paper-button on-click="addBudget" id="budget-btn" type="submit" raised>Add Budget</paper-button>
+            </form>
+
+            <paper-toast id="toast" text="{{message}}"></paper-toast>
             </main>
         `;
     }
@@ -46,8 +100,11 @@ class Dashboard extends PolymerElement {
                     }
                     return yearArray;
                 }
+            },
+            budgets: {
+                type: Array,
+                value: () => []
             }
-
         }
     }
 
@@ -60,35 +117,49 @@ class Dashboard extends PolymerElement {
     }
 
     addBudget (e) {
-            e.preventDefault();
-            let date = new Date();
-            date.setFullYear(this.$.yearSelect.value, this.parseMonth(), 1);
-            console.log(date);
-            const addBudget = (url = ``, data = {}) => {
-                return fetch(url, {
-                    method: "POST",
-                    mode: "cors",
-                    cache: "no-cache",
-                    credentials: "same-origin",
-                    headers: {
-                        "Content-Type": "application/json; charset=utf-8",
-                    },
-                    body: JSON.stringify(data),
-                })
-            }
-            addBudget("https://allowance-api.herokuapp.com/api/budgets/1", {budget:this.budget, budgetDate:date})
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                this.message = data.message;
-                this.$.toast.open();
-                this.populateBudgetsProp();
+        e.preventDefault();
+        // set date using value of form inputs
+        let date = new Date();
+        date.setFullYear(this.$.yearSelect.value, this.parseMonth(), 1);
+        // create addBudget function to simplify POST request to fetch
+        const addBudget = (url = ``, data = {}) => {
+            return fetch(url, {
+                method: "POST",
+                mode: "cors",
+                cache: "no-cache",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8",
+                },
+                body: JSON.stringify(data),
             })
-            .catch(err => console.log(err))
+        }
+        // use addBudget function to send POST request with budget payload and use data to send toast to user and rerender budget list
+        addBudget("https://allowance-api.herokuapp.com/api/budgets/1", {budget:this.budget, budgetDate:date})
+        .then(res => res.json())
+        .then(data => {
+            this.message = data.message;
+            this.$.toast.open();
+            this.populateBudgetsProp();
+        })
+        .catch(err => console.log(err))
+    }
+
+    populateBudgetsProp () {
+        this.set('budgets', []);
+        fetch("https://allowance-api.herokuapp.com/api/budgets/1")
+        .then(res => res.json())
+        .then(data => {
+            data.result.map((cur, i) => {
+                this.push("budgets", cur)
+            })
+        })
+        .catch(err => console.log(err))
     }
 
     constructor() {
         super();
+        this.populateBudgetsProp();
     }
 }
 
