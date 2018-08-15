@@ -3,6 +3,7 @@ import "../node_modules/@polymer/paper-input/paper-input";
 import "../node_modules/@polymer/iron-icon/iron-icon";
 import "../node_modules/@polymer/iron-icons/iron-icons";
 import "../node_modules/@polymer/paper-button/paper-button";
+import "../node_modules/@polymer/paper-toast/paper-toast";
 
 class SignupPage extends PolymerElement {
   static get template() {
@@ -43,9 +44,7 @@ class SignupPage extends PolymerElement {
           <paper-button on-click="signUp" id="submit-btn" type="submit" raised>Sign-Up</paper-button>
         </form>
 
-        <div id="{{messageClass}}">
-          <h2 aria-live="assertive">{{message}}</h2>
-        </div>
+        <paper-toast id="toast" text="{{message}}"></paper-toast>
       </main>
     `;
   }
@@ -85,11 +84,11 @@ class SignupPage extends PolymerElement {
     .then(res => res.json())
     .then(data => {
       this.message = data.message;
-      this.messageClass = "display-response"
+      this.$.toast.open();
     })
     .catch(err => console.log(err))
   }
- 
+
   constructor() {
     super();
   }

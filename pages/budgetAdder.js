@@ -5,25 +5,48 @@ import "../node_modules/@polymer/iron-icon/iron-icon";
 import "../node_modules/@polymer/iron-icons/iron-icons";
 import "../node_modules/@polymer/paper-button/paper-button";
 import "../node_modules/@polymer/paper-toast/paper-toast";
-import "./budgetList";
-import "./budgetAdder";
 
-class Dashboard extends PolymerElement {
+class BudgetAdder extends PolymerElement {
     static get template() {
         return html`
             <style>
-            main {
+            #addBudgetForm {
+                background: pink;
                 display: flex;
+                justify-content: center;
                 align-items: center;
                 flex-direction: column;
             }
+            #budgetInput {
+                padding-left: 15px;
+                padding-right: 15px
+            }
             </style>
+            <form id="addBudgetForm">
+                <paper-input id="budgetInput" label="budget" value={{budget}}>
+                    <iron-icon icon="add" slot="prefix"></iron-icon>
+                </paper-input>
 
-            <main>
-                <budget-list></budget-list>
-                <h2>Add a budget:</h2>
-                <budget-adder></budget-adder>
-            </main>
+                <select id="monthSelect">
+                    <dom-repeat items="[[months]]">
+                        <template is="dom-repeat" items="[[months]]" as="months">
+                            <option value="[[months]]">[[months]]</option>
+                        </template>
+                    </dom-repeat>
+                </select>
+
+                <select id="yearSelect">
+                    <dom-repeat items="[[years]]">
+                        <template is="dom-repeat" items="[[years]]" as="years">
+                            <option value="[[years]]">[[years]]</option>
+                        </template>
+                    </dom-repeat>
+                </select>
+
+                <paper-button on-click="addBudget" id="budget-btn" type="submit" raised>Add Budget</paper-button>
+            </form>
+
+            <paper-toast id="toast" text="{{message}}"></paper-toast>
         `;
     }
 
@@ -92,4 +115,4 @@ class Dashboard extends PolymerElement {
     }
 }
 
-customElements.define('dashboard-page', Dashboard);
+customElements.define('budget-adder', BudgetAdder);
