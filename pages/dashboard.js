@@ -5,6 +5,7 @@ import "../node_modules/@polymer/iron-icon/iron-icon";
 import "../node_modules/@polymer/iron-icons/iron-icons";
 import "../node_modules/@polymer/paper-button/paper-button";
 import "../node_modules/@polymer/paper-toast/paper-toast";
+import "../node_modules/@polymer/paper-spinner/paper-spinner";
 import "./budgetList";
 import "./budgetAdder";
 
@@ -16,27 +17,73 @@ class Dashboard extends PolymerElement {
                 display: flex;
                 align-items: center;
                 flex-direction: column;
+                background: grey;
             }
             .listDisplay {
                 margin: 20px;
-                background: teal;
+                border: 2px solid black;
                 display: flex;
                 flex-direction: column;
+                padding: 2%;
+                border-radius: 25px;
+                background: white;
             }
             .listRow {
                 display: flex;
                 flex-basis: 2;
             }
             #addBudgetForm {
-                background: pink;
                 display: flex;
+                border: 2px solid black;
                 justify-content: center;
                 align-items: center;
                 flex-direction: column;
+                border-radius: 25px;
+                padding: 2%;
+                margin: 20px;
+                background: white;
             }
             #budgetInput {
-                padding-left: 15px;
-                padding-right: 15px
+                width: 100%
+            }
+            #budget-btn {
+                background: green;
+                color: white;
+                width: 100%;
+                margin-top: 10px;
+            }
+            .month-row{
+                padding-left: 5px;
+                padding-right: 5px
+            }
+            .budget-row{
+                padding-left: 5px;
+                padding-right: 5px
+            }
+            #monthSelect, #yearSelect {
+                width: 100%
+            }
+            #budgetFormLabel {
+                margin: 0
+            }
+            #interactionPane {
+                display: flex;
+                flex-direction: row;
+            }
+            .overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                background: #FFF;
+            }
+            .hidden {
+                display: none
             }
             </style>
 
@@ -45,36 +92,67 @@ class Dashboard extends PolymerElement {
                 <dom-repeat items="{{budgets}}" as="budgetData">
                     <template>
                         <div class="listRow">
-                            <div>Month: {{budgetData.budgetDate}}</div>
-                            <div>Budget: {{budgetData.budget}}</div>
+                            <div class="month-row">Month: {{budgetData.budgetDate}}</div>
+                            <div class="budget-row">Budget: \${{budgetData.budget}}</div>
                         </div>
                     </template>
                 </dom-repeat>
             </div>
-            <h2>Add a budget:</h2>
-            <form id="addBudgetForm">
-                <paper-input id="budgetInput" label="budget" value={{budget}}>
-                    <iron-icon icon="add" slot="prefix"></iron-icon>
-                </paper-input>
+            <div id="interactionPane">
+                <form id="addBudgetForm">
+                    <h2 id="budgetFormLabel">Add a budget:</h2>
+                    <paper-input id="budgetInput" label="budget" value={{budget}}>
+                        <iron-icon icon="add" slot="prefix"></iron-icon>
+                    </paper-input>
 
-                <select id="monthSelect">
-                    <dom-repeat items="[[months]]">
-                        <template is="dom-repeat" items="[[months]]" as="months">
-                            <option value="[[months]]">[[months]]</option>
-                        </template>
-                    </dom-repeat>
-                </select>
+                    <select id="monthSelect">
+                        <dom-repeat items="[[months]]">
+                            <template is="dom-repeat" items="[[months]]" as="months">
+                                <option value="[[months]]">[[months]]</option>
+                            </template>
+                        </dom-repeat>
+                    </select>
 
-                <select id="yearSelect">
-                    <dom-repeat items="[[years]]">
-                        <template is="dom-repeat" items="[[years]]" as="years">
-                            <option value="[[years]]">[[years]]</option>
-                        </template>
-                    </dom-repeat>
-                </select>
+                    <select id="yearSelect">
+                        <dom-repeat items="[[years]]">
+                            <template is="dom-repeat" items="[[years]]" as="years">
+                                <option value="[[years]]">[[years]]</option>
+                            </template>
+                        </dom-repeat>
+                    </select>
 
-                <paper-button on-click="addBudget" id="budget-btn" type="submit" raised>Add Budget</paper-button>
-            </form>
+                    <paper-button on-click="addBudget" id="budget-btn" type="submit" raised>Add Budget</paper-button>
+                </form>
+
+                <form id="addBudgetForm">
+                    <h2 id="budgetFormLabel">Add a budget:</h2>
+                    <paper-input id="budgetInput" label="budget" value={{budget}}>
+                        <iron-icon icon="add" slot="prefix"></iron-icon>
+                    </paper-input>
+
+                    <select id="monthSelect">
+                        <dom-repeat items="[[months]]">
+                            <template is="dom-repeat" items="[[months]]" as="months">
+                                <option value="[[months]]">[[months]]</option>
+                            </template>
+                        </dom-repeat>
+                    </select>
+
+                    <select id="yearSelect">
+                        <dom-repeat items="[[years]]">
+                            <template is="dom-repeat" items="[[years]]" as="years">
+                                <option value="[[years]]">[[years]]</option>
+                            </template>
+                        </dom-repeat>
+                    </select>
+
+                    <paper-button on-click="addBudget" id="budget-btn" type="submit" raised>Add Budget</paper-button>
+                </form>
+            </div>
+
+            <div class="overlay [[loadingStyle]]">
+                <paper-spinner active="[[isLoading]]"></paper-spinner>
+            </div>
 
             <paper-toast id="toast" text="{{message}}"></paper-toast>
             </main>
@@ -104,6 +182,15 @@ class Dashboard extends PolymerElement {
             budgets: {
                 type: Array,
                 value: () => []
+            },
+            isLoading: {
+                type: Boolean,
+                value: true,
+                notify: true
+            },
+            loadingStyle: {
+                type: String,
+                value: ""
             }
         }
     }
@@ -150,8 +237,10 @@ class Dashboard extends PolymerElement {
         fetch("https://allowance-api.herokuapp.com/api/budgets/1")
         .then(res => res.json())
         .then(data => {
+            this.set("isLoading", false);
+            this.set("loadingStyle", "hidden");
             data.result.map((cur, i) => {
-                this.push("budgets", cur)
+                this.push("budgets", cur);
             })
         })
         .catch(err => console.log(err))

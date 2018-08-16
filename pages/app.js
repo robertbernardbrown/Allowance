@@ -7,14 +7,11 @@ import "./footer.js";
 import "./signup";
 import "./welcome";
 import "./signin";
-import "./dashboard";
+import "./dashboard"
 
 class App extends PolymerElement {
     static get template() {
         return html`
-            <style>
-            
-            </style>
 
             <app-location route="{{route}}"></app-location>
 

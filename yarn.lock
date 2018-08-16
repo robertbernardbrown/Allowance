@@ -113,6 +113,15 @@
   dependencies:
     "@polymer/polymer" "^3.0.0"
 
+"@polymer/iron-menu-behavior@^3.0.0-pre.21":
+  version "3.0.0-pre.21"
+  resolved "https://registry.yarnpkg.com/@polymer/iron-menu-behavior/-/iron-menu-behavior-3.0.0-pre.21.tgz#b22dc98c5db0a7c22b667c8b0e73828e227c2aff"
+  dependencies:
+    "@polymer/iron-a11y-keys-behavior" "^3.0.0-pre.21"
+    "@polymer/iron-flex-layout" "^3.0.0-pre.21"
+    "@polymer/iron-selector" "^3.0.0-pre.21"
+    "@polymer/polymer" "^3.0.0"
+
 "@polymer/iron-meta@^3.0.0-pre.21":
   version "3.0.0-pre.21"
   resolved "https://registry.yarnpkg.com/@polymer/iron-meta/-/iron-meta-3.0.0-pre.21.tgz#e74ab386a1b490031e329f7ec032316bec24fa2a"
@@ -209,6 +218,24 @@
     "@polymer/paper-styles" "^3.0.0-pre.21"
     "@polymer/polymer" "^3.0.0"
 
+"@polymer/paper-item@^3.0.0-pre.21":
+  version "3.0.0-pre.21"
+  resolved "https://registry.yarnpkg.com/@polymer/paper-item/-/paper-item-3.0.0-pre.21.tgz#d6831de2e3c7d457f30754b0dcf1b9e2aa20cbf3"
+  dependencies:
+    "@polymer/iron-behaviors" "^3.0.0-pre.21"
+    "@polymer/iron-flex-layout" "^3.0.0-pre.21"
+    "@polymer/paper-styles" "^3.0.0-pre.21"
+    "@polymer/polymer" "^3.0.0"
+
+"@polymer/paper-listbox@^3.0.0-pre.21":
+  version "3.0.0-pre.21"
+  resolved "https://registry.yarnpkg.com/@polymer/paper-listbox/-/paper-listbox-3.0.0-pre.21.tgz#c9e5fda9e7b7888b3be9610d8747c67c1e450883"
+  dependencies:
+    "@polymer/iron-behaviors" "^3.0.0-pre.21"
+    "@polymer/iron-menu-behavior" "^3.0.0-pre.21"
+    "@polymer/paper-styles" "^3.0.0-pre.21"
+    "@polymer/polymer" "^3.0.0"
+
 "@polymer/paper-menu-button@^3.0.0-pre.21":
   version "3.0.0-pre.21"
   resolved "https://registry.yarnpkg.com/@polymer/paper-menu-button/-/paper-menu-button-3.0.0-pre.21.tgz#fff179416c65f59ad856ed3d01b5d77b329be71a"
@@ -226,6 +253,13 @@
   resolved "https://registry.yarnpkg.com/@polymer/paper-ripple/-/paper-ripple-3.0.0-pre.21.tgz#9375760af161c142591b3a0a1d4db299fb174067"
   dependencies:
     "@polymer/iron-a11y-keys-behavior" "^3.0.0-pre.21"
+    "@polymer/polymer" "^3.0.0"
+
+"@polymer/paper-spinner@^3.0.0-pre.21":
+  version "3.0.0-pre.21"
+  resolved "https://registry.yarnpkg.com/@polymer/paper-spinner/-/paper-spinner-3.0.0-pre.21.tgz#64e3d3426378d522b48ddf8f653d3ae2375a9a76"
+  dependencies:
+    "@polymer/paper-styles" "^3.0.0-pre.21"
     "@polymer/polymer" "^3.0.0"
 
 "@polymer/paper-styles@^3.0.0-pre.21":

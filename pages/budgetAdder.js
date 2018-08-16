@@ -10,7 +10,6 @@ class BudgetAdder extends PolymerElement {
     static get template() {
         return html`
             <style>
-            
             </style>
             
         `;
