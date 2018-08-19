@@ -12,6 +12,15 @@ import "./dashboard"
 class App extends PolymerElement {
     static get template() {
         return html`
+            <style>
+            html, body {
+                height: 100%
+            }
+            body {
+                display: flex;
+                flex-direction: column;
+            }
+            </style>
 
             <app-location route="{{route}}"></app-location>
 

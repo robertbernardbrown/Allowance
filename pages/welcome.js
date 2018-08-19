@@ -14,16 +14,18 @@ class WelcomePage extends PolymerElement {
                 flex: 1 auto;
                 justify-content: center;
                 color: white;
-                font-size: 2em;
+                font-size: 1em;
+                color: black;
             }
             h2 {
-                font-size: 4em
+                font-size: 2em
             }
             input {
                 font-size: 50px;
             }
             .welcome-btns {
-                margin: 5px
+                margin: 5px;
+                font-size: 2em
             }
         </style>
 
