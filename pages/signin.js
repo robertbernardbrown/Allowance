@@ -24,36 +24,30 @@ class SigninPage extends PolymerElement {
 
     <main id="sign-up">
         <form>
-            <paper-input label="username" value={{username}} required error-message="Field is required">
+            <paper-input label="email" value={{email}} required error-message="Field is required">
                 <iron-icon icon="supervisor-account" slot="prefix"></iron-icon>
             </paper-input>
 
-            <paper-input label="password" value={{password}} required error-message="Field is required">
+            <paper-input label="password" type="password" value={{password}} required error-message="Field is required">
                 <iron-icon icon="lock" slot="prefix"></iron-icon>
             </paper-input>
         
             <paper-button on-click="signIn" id="submit-btn" type="submit" raised>Sign-In</paper-button>
         </form>
 
-        <div id="{{messageClass}}">
-          <h2 aria-live="assertive">{{message}}</h2>
-        </div>
+        <paper-toast id="toast" text="{{message}}"></paper-toast>
     </main>
     `;
   }
 
   static get properties() {
     return {
-      username: {type: String},
+      email: {type: String},
       password: {type: String},
       signInStatus: {
           type: Boolean,
           value: false
-      },
-      messageClass: {
-        type: String,
-        value: "hide-response"
-      },
+      }
     }
   }
 
@@ -71,11 +65,11 @@ class SigninPage extends PolymerElement {
             body: JSON.stringify(data),
         })
     }
-    registerUser("https://allowance-api.herokuapp.com/api/login", {userName:this.username, userPassword:this.password})
+    registerUser("https://allowance-api.herokuapp.com/api/login", {userEmail:this.email, userPassword:this.password})
     .then(res => res.json())
     .then(data => {
-      this.message = data.message;
-      this.messageClass = "display-response"
+        this.message = data.message;
+        this.$.toast.open();
     })
     .catch(err => console.log(err))
   }
