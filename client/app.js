@@ -1,7 +1,7 @@
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
-import "../node_modules/@polymer/app-route/app-location";
-import "../node_modules/@polymer/iron-pages/iron-pages";
-import "../node_modules/@polymer/app-route/app-route";
+import "@polymer/app-route/app-location";
+import "@polymer/iron-pages";
+import "@polymer/app-route/app-route";
 import "./header.js"
 import "./footer.js";
 import "./signup";

@@ -1,11 +1,11 @@
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
-import '../node_modules/@polymer/polymer/lib/elements/dom-repeat';
-import "../node_modules/@polymer/paper-input/paper-input";
-import "../node_modules/@polymer/iron-icon/iron-icon";
-import "../node_modules/@polymer/iron-icons/iron-icons";
-import "../node_modules/@polymer/paper-button/paper-button";
-import "../node_modules/@polymer/paper-toast/paper-toast";
-import "../node_modules/@polymer/paper-spinner/paper-spinner";
+import '@polymer/polymer/lib/elements/dom-repeat';
+import "@polymer/paper-input/paper-input";
+import "@polymer/iron-icon";
+import "@polymer/iron-icons/iron-icons";
+import "@polymer/paper-button";
+import "@polymer/paper-toast";
+import "@polymer/paper-spinner/paper-spinner";
 import "./budgetList";
 import "./budgetAdder";
 
