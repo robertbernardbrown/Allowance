@@ -1,4 +1,5 @@
 import { PolymerElement, html } from "../node_modules/@polymer/polymer/polymer-element.js";
+import Auth from "./utils/Auth.js";
 
 class SigninPage extends PolymerElement {
   static get template() {
@@ -35,7 +36,7 @@ class SigninPage extends PolymerElement {
             <paper-button on-click="signIn" id="submit-btn" type="submit" raised>Sign-In</paper-button>
         </form>
 
-        <paper-toast id="toast" text="{{token}}"></paper-toast>
+        <paper-toast id="toast" text="{{message}}"></paper-toast>
     </main>
     `;
   }
@@ -77,8 +78,9 @@ class SigninPage extends PolymerElement {
       userPassword: this.password
     }).then(res => res.json()).then(data => {
       this.message = data.message;
-      this.token = data.token;
       this.$.toast.open();
+      Auth.authenticateUser(data.token);
+      this.signInStatus = true;
     }).catch(err => console.log(err));
   }
 
