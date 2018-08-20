@@ -1,4 +1,5 @@
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+import Auth from "./utils/Auth";
 import '@polymer/polymer/lib/elements/dom-repeat';
 import "@polymer/paper-input/paper-input";
 import "@polymer/iron-icon";
@@ -234,7 +235,11 @@ class Dashboard extends PolymerElement {
 
     populateBudgetsProp () {
         this.set('budgets', []);
-        fetch("https://allowance-api.herokuapp.com/api/budgets/1")
+        fetch("https://allowance-api.herokuapp.com/api/budgets/1", {
+            headers: {
+                "Authorization":"bearer " + Auth.getToken()
+            }
+        })
         .then(res => res.json())
         .then(data => {
             this.set("isLoading", false);
