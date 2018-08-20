@@ -47,7 +47,8 @@ class SigninPage extends PolymerElement {
       signInStatus: {
           type: Boolean,
           value: false
-      }
+      },
+      token: String
     }
   }
 
@@ -69,6 +70,7 @@ class SigninPage extends PolymerElement {
     .then(res => res.json())
     .then(data => {
         this.message = data.message;
+        this.token = data.token;
         this.$.toast.open();
     })
     .catch(err => console.log(err))

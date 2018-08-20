@@ -35,7 +35,7 @@ class SigninPage extends PolymerElement {
             <paper-button on-click="signIn" id="submit-btn" type="submit" raised>Sign-In</paper-button>
         </form>
 
-        <paper-toast id="toast" text="{{message}}"></paper-toast>
+        <paper-toast id="toast" text="{{token}}"></paper-toast>
     </main>
     `;
   }
@@ -51,7 +51,8 @@ class SigninPage extends PolymerElement {
       signInStatus: {
         type: Boolean,
         value: false
-      }
+      },
+      token: String
     };
   }
 
@@ -76,6 +77,7 @@ class SigninPage extends PolymerElement {
       userPassword: this.password
     }).then(res => res.json()).then(data => {
       this.message = data.message;
+      this.token = data.token;
       this.$.toast.open();
     }).catch(err => console.log(err));
   }
