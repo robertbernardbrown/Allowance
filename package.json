@@ -21,9 +21,14 @@
     "@polymer/paper-toast": "^3.0.0-pre.21",
     "@polymer/polymer": "^3.0.0-pre.12",
     "@webcomponents/webcomponentsjs": "^1.0.20",
+    "express": "^4.16.3",
     "web-animations-js": "^2.3.1"
   },
   "resolutions": {
-    "@webcomponents/webcomponentsjs": "1.0.20"
+    "@webcomponents/webcomponentsjs": "1.0.20",
+    "depd": "1.1.2",
+    "setprototypeof": "1.1.0",
+    "statuses": "1.4.0",
+    "http-errors": "1.6.3"
   }
 }

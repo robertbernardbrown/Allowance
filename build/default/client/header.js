@@ -6,20 +6,24 @@ class HeaderBanner extends PolymerElement {
       <style>
         header {
           display: flex;
-          background: grey;
+          border-bottom: 2px solid black;
           justify-content: center;
-          align-content: center;
+          align-items: center;
+          margin: 0;
+          padding: 0;
           width: 100%;
         }
         h1 {
-          color: white;
-          margin-left: 2%;
+          color: black;
           font-size: 5em;
+        }
+        header > a {
+          text-decoration: none;
         }
       </style>
 
       <header id="header">
-        <h1>Allowance</h1>
+        <a href="/"><h1>Allowance</h1></a>
       </header>
     `;
   }

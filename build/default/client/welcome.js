@@ -1,34 +1,44 @@
 import { PolymerElement, html } from "../node_modules/@polymer/polymer/polymer-element.js";
-import "../components/header.js";
-import "../components/footer.js";
-import "../components/signup.js";
 
 class WelcomePage extends PolymerElement {
   static get template() {
     return html`
         <style>
-            #button-group {
+            main {
                 display: flex;
+                align-items: center;
+                flex-direction: column;
+            }
+            main > * {
+                display:flex;
+                flex: 1 auto;
                 justify-content: center;
+                color: white;
+                font-size: 1em;
+                color: black;
+            }
+            h2 {
+                font-size: 2em
+            }
+            input {
+                font-size: 50px;
+            }
+            .welcome-btns {
+                margin: 5px;
+                font-size: 2em
             }
         </style>
 
-        <header-banner></header-banner>
             <main>
                 <h2>Welcome to Allowance!</h1>
                     <p>Allowance is an app to help you keep track of your funds in the simplest way possible</p>
                     <p>Post a budget and then track your transactions.</p>
                     <p>That's it - no fancy bank connections, just a good ol' fashioned budget tracker</p>
                     <div id="button-group">
-                        <form action="/sign-up">
-                            <input type="submit" value="Sign-Up" />
-                        </form>
-                        <form action="/sign-in">
-                            <input type="submit" value="Sign-In" />
-                        </form>
+                            <a class="welcome-btns" href="/sign-up">Sign-up</a>
+                            <a class="welcome-btns" href="/sign-in">Sign-in</a>
                     </div>
             </main>
-        <footer-banner></footer-banner>
     `;
   }
 
