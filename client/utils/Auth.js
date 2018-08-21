@@ -21,7 +21,8 @@ class Auth {
      * Deauthenticate a user. Remove a token from Local Storage.
      */
     static deauthenticateUser() {
-      localStorage.removeItem('token');
+      let keysToRemove = ["token", "userId"];
+      keysToRemove.forEach(k => localStorage.removeItem(k));
     }
   
     /**

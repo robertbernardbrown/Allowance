@@ -3,8 +3,9 @@ class Auth {
    * Authenticate a user. Save a token string in Local Storage
    * @param {string} token
    */
-  static authenticateUser(token) {
+  static authenticateUser(token, id) {
     localStorage.setItem('token', token);
+    localStorage.setItem('userId', id);
   }
   /**
    * Check if a user is authenticated - check if a token is saved in Local Storage
@@ -21,7 +22,8 @@ class Auth {
 
 
   static deauthenticateUser() {
-    localStorage.removeItem('token');
+    let keysToRemove = ["token", "userId"];
+    keysToRemove.forEach(k => localStorage.removeItem(k));
   }
   /**
    * Get a token value.
@@ -32,6 +34,11 @@ class Auth {
   static getToken() {
     let token = localStorage.getItem('token');
     return token;
+  }
+
+  static getId() {
+    let id = localStorage.getItem("userId");
+    return id;
   }
 
 }

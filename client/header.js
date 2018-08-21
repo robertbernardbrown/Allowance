@@ -27,7 +27,7 @@ class HeaderBanner extends PolymerElement {
       </header>
     `;
   }
- 
+
   constructor() {
     super();
   }

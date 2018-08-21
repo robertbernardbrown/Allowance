@@ -51,8 +51,10 @@ class SigninPage extends PolymerElement {
       },
       signInStatus: {
         type: Boolean,
+        notify: true,
         value: false
       },
+      message: String,
       token: String
     };
   }
@@ -77,17 +79,17 @@ class SigninPage extends PolymerElement {
       userEmail: this.email,
       userPassword: this.password
     }).then(res => res.json()).then(data => {
-      console.log(data);
       this.message = data.message;
       this.$.toast.open();
-      Auth.authenticateUser(data.token);
+      Auth.authenticateUser(data.token, data.userId);
       this.signInStatus = true;
-      window.location = "/dashboard";
+      console.log(this.signInStatus);
     }).catch(err => console.log(err));
   }
 
   constructor() {
     super();
+    console.log(this.signInStatus);
   }
 
 }

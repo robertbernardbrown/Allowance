@@ -21,7 +21,6 @@ class App extends PolymerElement {
                 flex-direction: column;
             }
             </style>
-
             <app-location route="{{route}}"></app-location>
 
             <app-route
@@ -34,11 +33,17 @@ class App extends PolymerElement {
             <iron-pages selected="[[routeData.view]]" attr-for-selected="name" default-selected="">
                 <welcome-page name="" route="{{subroute}}"></welcome-page>
                 <signup-page name="sign-up" route="{{subroute}}"></signup-page>
-                <signin-page name="sign-in" route="{{subroute}}"></signin-page>
-                <dashboard-page name="dashboard" route="{{subroute}}"></dashboard-page>
+                <signin-page name="sign-in" sign-in-status="{{_signInStatus}}" route="{{subroute}}"></signin-page>
+                <dashboard-page name="dashboard" route="{{subroute}}" sign-in-status="[[_signInStatus]]"></dashboard-page>
             </iron-pages>
             <footer-banner></footer-banner>
         `;
+  }
+
+  static get properties() {
+    return {
+      signInStatus: String
+    };
   }
 
   constructor() {
