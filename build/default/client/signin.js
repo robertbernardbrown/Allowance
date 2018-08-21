@@ -77,6 +77,7 @@ class SigninPage extends PolymerElement {
       userEmail: this.email,
       userPassword: this.password
     }).then(res => res.json()).then(data => {
+      console.log(data);
       this.message = data.message;
       this.$.toast.open();
       Auth.authenticateUser(data.token);

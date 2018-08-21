@@ -4,8 +4,9 @@ class Auth {
      * Authenticate a user. Save a token string in Local Storage
      * @param {string} token
      */
-    static authenticateUser(token) {
+    static authenticateUser(token, id) {
       localStorage.setItem('token', token);
+      localStorage.setItem('userId', id);
     }
   
     /**
@@ -31,6 +32,11 @@ class Auth {
     static getToken() {
       let token = localStorage.getItem('token');
       return token;
+    }
+
+    static getId() {
+      let id = localStorage.getItem("userId");
+      return id;
     }
   
   }

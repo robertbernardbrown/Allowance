@@ -72,7 +72,7 @@ class SigninPage extends PolymerElement {
     .then(data => {
         this.message = data.message;
         this.$.toast.open();
-        Auth.authenticateUser(data.token);
+        Auth.authenticateUser(data.token, data.userId);
         this.signInStatus = true
         window.location = "/dashboard"
     })
