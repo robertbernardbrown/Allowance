@@ -37,7 +37,7 @@ class SignupPage extends PolymerElement {
             <iron-icon icon="mail" slot="prefix"></iron-icon>
           </paper-input>
 
-          <paper-input label="password" value={{password}} required error-message="Field is required">
+          <paper-input label="password" type="password" value={{password}} required error-message="Field is required">
             <iron-icon icon="lock" slot="prefix"></iron-icon>
           </paper-input>
 
@@ -85,6 +85,7 @@ class SignupPage extends PolymerElement {
     .then(data => {
       this.message = data.message;
       this.$.toast.open();
+      window.location = "/sign-in"
     })
     .catch(err => console.log(err))
   }

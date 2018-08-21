@@ -11,6 +11,7 @@ class FooterBanner extends PolymerElement {
           align-content: center;
           width: 100%;
           flex-shrink: 0;
+          margin-top: 25px;
         }
         h1 {
           color: black;
