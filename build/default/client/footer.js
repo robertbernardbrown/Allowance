@@ -1,4 +1,4 @@
-import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+import { PolymerElement, html } from "../node_modules/@polymer/polymer/polymer-element.js";
 
 class FooterBanner extends PolymerElement {
   static get template() {
@@ -11,6 +11,7 @@ class FooterBanner extends PolymerElement {
           align-content: center;
           width: 100%;
           flex-shrink: 0;
+          margin-top: 25px;
         }
         h1 {
           color: black;
@@ -24,10 +25,11 @@ class FooterBanner extends PolymerElement {
       </footer>
     `;
   }
- 
+
   constructor() {
     super();
   }
+
 }
 
 customElements.define('footer-banner', FooterBanner);

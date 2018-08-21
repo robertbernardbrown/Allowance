@@ -1,4 +1,4 @@
-import { PolymerElement, html } from "../node_modules/@polymer/polymer/polymer-element.js";
+import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 
 class FooterBanner extends PolymerElement {
   static get template() {
@@ -6,17 +6,15 @@ class FooterBanner extends PolymerElement {
       <style>
         footer {
           display: flex;
-          background: grey;
           justify-content: center;
+          border-top: 2px solid black;
           align-content: center;
-          position: absolute;
           width: 100%;
-          left: 50%;
-          margin-left: -50%;
-          bottom: 0;
+          flex-shrink: 0;
+          margin-top: 25px;
         }
         h1 {
-          color: white;
+          color: black;
           margin-left: 2%;
           font-size: 2em;
         }
@@ -27,11 +25,10 @@ class FooterBanner extends PolymerElement {
       </footer>
     `;
   }
-
+ 
   constructor() {
     super();
   }
-
 }
 
 customElements.define('footer-banner', FooterBanner);

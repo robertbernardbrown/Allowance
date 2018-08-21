@@ -1,9 +1,9 @@
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
-import "../node_modules/@polymer/paper-input/paper-input";
-import "../node_modules/@polymer/iron-icon/iron-icon";
-import "../node_modules/@polymer/iron-icons/iron-icons";
-import "../node_modules/@polymer/paper-button/paper-button";
-import "../node_modules/@polymer/paper-toast/paper-toast";
+import "@polymer/paper-input/paper-input";
+import "@polymer/iron-icon";
+import "@polymer/iron-icons/iron-icons";
+import "@polymer/paper-button";
+import "@polymer/paper-toast";
 
 class SignupPage extends PolymerElement {
   static get template() {
@@ -37,7 +37,7 @@ class SignupPage extends PolymerElement {
             <iron-icon icon="mail" slot="prefix"></iron-icon>
           </paper-input>
 
-          <paper-input label="password" value={{password}} required error-message="Field is required">
+          <paper-input label="password" type="password" value={{password}} required error-message="Field is required">
             <iron-icon icon="lock" slot="prefix"></iron-icon>
           </paper-input>
 
@@ -85,6 +85,7 @@ class SignupPage extends PolymerElement {
     .then(data => {
       this.message = data.message;
       this.$.toast.open();
+      window.location = "/sign-in"
     })
     .catch(err => console.log(err))
   }

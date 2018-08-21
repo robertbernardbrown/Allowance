@@ -1,4 +1,5 @@
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+import Auth from './utils/Auth';
 
 class SigninPage extends PolymerElement {
   static get template() {
@@ -47,7 +48,8 @@ class SigninPage extends PolymerElement {
       signInStatus: {
           type: Boolean,
           value: false
-      }
+      },
+      token: String
     }
   }
 
@@ -70,6 +72,9 @@ class SigninPage extends PolymerElement {
     .then(data => {
         this.message = data.message;
         this.$.toast.open();
+        Auth.authenticateUser(data.token);
+        this.signInStatus = true
+        window.location = "/dashboard"
     })
     .catch(err => console.log(err))
   }

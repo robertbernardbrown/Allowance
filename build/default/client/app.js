@@ -1,17 +1,17 @@
-import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
-import "../node_modules/@polymer/app-route/app-location";
-import "../node_modules/@polymer/iron-pages/iron-pages";
-import "../node_modules/@polymer/app-route/app-route";
-import "./header.js"
+import { PolymerElement, html } from "../node_modules/@polymer/polymer/polymer-element.js";
+import "../node_modules/@polymer/app-route/app-location.js";
+import "../node_modules/@polymer/iron-pages/iron-pages.js";
+import "../node_modules/@polymer/app-route/app-route.js";
+import "./header.js";
 import "./footer.js";
-import "./signup";
-import "./welcome";
-import "./signin";
-import "./dashboard"
+import "./signup.js";
+import "./welcome.js";
+import "./signin.js";
+import "./dashboard.js";
 
 class App extends PolymerElement {
-    static get template() {
-        return html`
+  static get template() {
+    return html`
             <style>
             html, body {
                 height: 100%
@@ -39,11 +39,12 @@ class App extends PolymerElement {
             </iron-pages>
             <footer-banner></footer-banner>
         `;
-    }
- 
+  }
+
   constructor() {
     super();
   }
+
 }
 
 customElements.define('main-app', App);
