@@ -42,9 +42,9 @@ class WelcomePage extends PolymerElement {
     `;
   }
  
-  constructor() {
-    super();
-  }
+    constructor() {
+        super();
+    }
 }
 
 customElements.define('welcome-page', WelcomePage);

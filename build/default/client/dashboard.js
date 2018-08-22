@@ -53,6 +53,12 @@ class Dashboard extends PolymerElement {
                 width: 100%;
                 margin-top: 10px;
             }
+            #logout-Btn {
+                background: red;
+                color: white;
+                width: 100%;
+                margin-top: 10px;
+            }
             .month-row, .budget-row {
                 padding-left: 5px;
                 padding-right: 5px
@@ -84,7 +90,7 @@ class Dashboard extends PolymerElement {
             }
             </style>
 
-            <main>
+            <main slot="dashboard">
             <div class="listDisplay">
                 <dom-repeat items="{{budgets}}" as="budgetData">
                     <template>
@@ -146,6 +152,8 @@ class Dashboard extends PolymerElement {
                     <paper-button on-click="addTransaction" id="transaction-btn" type="submit" raised>Add Transaction</paper-button>
                 </form>
             </div>
+
+            <button on-click="logOut" id="logout-Btn">Log-Out</button>
 
             <div class="overlay [[loadingStyle]]">
                 <paper-spinner active="[[isLoading]]"></paper-spinner>
@@ -223,7 +231,7 @@ class Dashboard extends PolymerElement {
     }; // use addBudget function to send POST request with budget payload and use data to send toast to user and rerender budget list
 
 
-    addBudget("https://allowance-api.herokuapp.com/api/budgets/1", {
+    addBudget(`https://allowance-api.herokuapp.com/api/budgets/${Auth.getId()}`, {
       budget: this.budget,
       budgetDate: date
     }).then(res => res.json()).then(data => {
@@ -235,7 +243,7 @@ class Dashboard extends PolymerElement {
 
   populateBudgetsProp() {
     this.set('budgets', []);
-    fetch("https://allowance-api.herokuapp.com/api/budgets/1", {
+    fetch(`https://allowance-api.herokuapp.com/api/budgets/${Auth.getId()}`, {
       headers: {
         "Authorization": "bearer " + Auth.getToken()
       }
@@ -246,6 +254,11 @@ class Dashboard extends PolymerElement {
         this.push("budgets", cur);
       });
     }).catch(err => console.log(err));
+  }
+
+  logOut() {
+    Auth.deauthenticateUser();
+    window.location = "/";
   }
 
   constructor() {

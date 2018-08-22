@@ -7,7 +7,8 @@ import "./footer.js";
 import "./signup";
 import "./welcome";
 import "./signin";
-import "./dashboard"
+import "./dashboard";
+import "./loginCheck";
 
 class App extends PolymerElement {
     static get template() {
@@ -21,7 +22,6 @@ class App extends PolymerElement {
                 flex-direction: column;
             }
             </style>
-
             <app-location route="{{route}}"></app-location>
 
             <app-route
@@ -34,16 +34,30 @@ class App extends PolymerElement {
             <iron-pages selected="[[routeData.view]]" attr-for-selected="name" default-selected="">
                 <welcome-page name="" route="{{subroute}}"></welcome-page>
                 <signup-page name="sign-up" route="{{subroute}}"></signup-page>
-                <signin-page name="sign-in" route="{{subroute}}"></signin-page>
-                <dashboard-page name="dashboard" route="{{subroute}}"></dashboard-page>
+                <signin-page name="sign-in" sign-in-status="{{_signInStatus}}" route="{{subroute}}"></signin-page>
+                <div name="dashboard">
+                    <login-check>
+                        <dashboard-page route="{{subroute}}"></dashboard-page>
+                    </login-check>
+                </div>
             </iron-pages>
             <footer-banner></footer-banner>
         `;
     }
- 
-  constructor() {
-    super();
-  }
+
+    static get properties () {
+        return {
+            signInStatus: {
+                type: Boolean,
+                value: false,
+                notify: true
+            }
+        }
+    }
+
+    constructor() {
+        super();
+    }
 }
 
 customElements.define('main-app', App);

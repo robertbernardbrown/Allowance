@@ -23,7 +23,7 @@ class SigninPage extends PolymerElement {
         }
     </style>
 
-    <main id="sign-up">
+    <main id="sign-in">
         <form>
             <paper-input label="email" value={{email}} required error-message="Field is required">
                 <iron-icon icon="supervisor-account" slot="prefix"></iron-icon>
@@ -36,6 +36,8 @@ class SigninPage extends PolymerElement {
             <paper-button on-click="signIn" id="submit-btn" type="submit" raised>Sign-In</paper-button>
         </form>
 
+        <a href="/dashboard">dashboard</a>
+
         <paper-toast id="toast" text="{{message}}"></paper-toast>
     </main>
     `;
@@ -47,8 +49,10 @@ class SigninPage extends PolymerElement {
       password: {type: String},
       signInStatus: {
           type: Boolean,
-          value: false
+          notify: true,
+          computed: "isAuthenticated()"
       },
+      message: String,
       token: String
     }
   }
@@ -72,11 +76,14 @@ class SigninPage extends PolymerElement {
     .then(data => {
         this.message = data.message;
         this.$.toast.open();
-        Auth.authenticateUser(data.token);
-        this.signInStatus = true
-        window.location = "/dashboard"
+        Auth.authenticateUser(data.token, data.userId);
+        this.signInStatus = true;
     })
     .catch(err => console.log(err))
+  }
+
+  isAuthenticated(){
+    return Auth.isUserAuthenticated();
   }
  
   constructor() {
