@@ -24,9 +24,6 @@ class SigninPage extends PolymerElement {
     </style>
 
     <main id="sign-in">
-        <h1>[[route]]</h1>
-        <h1>[[route.path]]</h1>
-        <h1>[[route.prefix]]</h1>
         <form>
             <paper-input label="email" value={{email}} required error-message="Field is required">
                 <iron-icon icon="supervisor-account" slot="prefix"></iron-icon>

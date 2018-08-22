@@ -40,7 +40,6 @@ class LoginCheck extends PolymerElement {
   constructor() {
     super();
     this.authCheck();
-    console.log(this.signInStatus);
   }
 
 }
