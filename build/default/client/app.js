@@ -50,8 +50,7 @@ class App extends PolymerElement {
       signInStatus: {
         type: Boolean,
         value: false,
-        notify: true,
-        observer: "_signInUpdated"
+        notify: true
       }
     };
   }
