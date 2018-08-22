@@ -56,13 +56,8 @@ class App extends PolymerElement {
     };
   }
 
-  _signInUpdated() {
-    console.log("[main-app] updated");
-  }
-
   constructor() {
     super();
-    console.log(this.signInStatus);
   }
 
 }
