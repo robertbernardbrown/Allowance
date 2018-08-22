@@ -90,7 +90,7 @@ class Dashboard extends PolymerElement {
             }
             </style>
 
-            <main>
+            <main slot="dashboard">
             <div class="listDisplay">
                 <dom-repeat items="{{budgets}}" as="budgetData">
                     <template>

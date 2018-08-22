@@ -36,13 +36,28 @@ class App extends PolymerElement {
                 <signup-page name="sign-up" route="{{subroute}}"></signup-page>
                 <signin-page name="sign-in" sign-in-status="{{_signInStatus}}" route="{{subroute}}"></signin-page>
                 <div name="dashboard">
-                    <login-check sign-in-status="[[_signInStatus]]">
+                    <login-check>
                         <dashboard-page route="{{subroute}}"></dashboard-page>
                     </login-check>
                 </div>
             </iron-pages>
             <footer-banner></footer-banner>
         `;
+    }
+
+    static get properties () {
+        return {
+            signInStatus: {
+                type: Boolean,
+                value: false,
+                notify: true,
+                observer: "_signInUpdated"
+            }
+        }
+    }
+
+    _signInUpdated () {
+        console.log("[main-app] updated")
     }
 
     constructor() {

@@ -23,7 +23,7 @@ class SigninPage extends PolymerElement {
         }
     </style>
 
-    <main id="sign-up">
+    <main id="sign-in">
         <form>
             <paper-input label="email" value={{email}} required error-message="Field is required">
                 <iron-icon icon="supervisor-account" slot="prefix"></iron-icon>
@@ -77,6 +77,7 @@ class SigninPage extends PolymerElement {
         Auth.authenticateUser(data.token, data.userId);
         this.signInStatus = true;
         console.log(this.signInStatus);
+        // this.set('route', '/dashboard');
     })
     .catch(err => console.log(err))
   }
