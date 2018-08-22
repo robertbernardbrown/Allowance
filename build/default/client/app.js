@@ -62,6 +62,7 @@ class App extends PolymerElement {
 
   constructor() {
     super();
+    console.log(this.signInStatus);
   }
 
 }

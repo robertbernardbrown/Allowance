@@ -48,7 +48,7 @@ class SigninPage extends PolymerElement {
       signInStatus: {
           type: Boolean,
           notify: true,
-          value: false
+          computed: "isAuthenticated()"
       },
       message: String,
       token: String
@@ -76,15 +76,16 @@ class SigninPage extends PolymerElement {
         this.$.toast.open();
         Auth.authenticateUser(data.token, data.userId);
         this.signInStatus = true;
-        console.log(this.signInStatus);
-        // this.set('route', '/dashboard');
     })
     .catch(err => console.log(err))
+  }
+
+  isAuthenticated(){
+    return Auth.isUserAuthenticated();
   }
  
   constructor() {
     super();
-    console.log(this.signInStatus)
   }
 }
 

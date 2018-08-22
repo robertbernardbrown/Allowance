@@ -24,6 +24,9 @@ class SigninPage extends PolymerElement {
     </style>
 
     <main id="sign-in">
+        <h1>[[route]]</h1>
+        <h1>[[route.path]]</h1>
+        <h1>[[route.prefix]]</h1>
         <form>
             <paper-input label="email" value={{email}} required error-message="Field is required">
                 <iron-icon icon="supervisor-account" slot="prefix"></iron-icon>
@@ -52,7 +55,7 @@ class SigninPage extends PolymerElement {
       signInStatus: {
         type: Boolean,
         notify: true,
-        value: false
+        computed: "isAuthenticated()"
       },
       message: String,
       token: String
@@ -83,13 +86,15 @@ class SigninPage extends PolymerElement {
       this.$.toast.open();
       Auth.authenticateUser(data.token, data.userId);
       this.signInStatus = true;
-      console.log(this.signInStatus); // this.set('route', '/dashboard');
     }).catch(err => console.log(err));
+  }
+
+  isAuthenticated() {
+    return Auth.isUserAuthenticated();
   }
 
   constructor() {
     super();
-    console.log(this.signInStatus);
   }
 
 }
