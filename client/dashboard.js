@@ -64,7 +64,7 @@ class Dashboard extends PolymerElement {
                 padding-left: 5px;
                 padding-right: 5px
             }
-            .monthSelect, .yearSelect, .typeSelect, .reciept-label, .reciept-textarea {
+            .monthSelect, .yearSelect, .typeSelect, .receipt-label, .receipt-textarea {
                 width: 100%
             }
             #budgetFormLabel, #transactionFormLabel {
@@ -130,7 +130,7 @@ class Dashboard extends PolymerElement {
 
                 <form id="addTransactionForm" class="interactionForm">
                     <h2 id="transactionFormLabel">Add a transaction:</h2>
-                    <paper-input id="transactionInput" no-label-float label="transaction" value={{transaction}}>
+                    <paper-input id="transactionInput" no-label-float label="transaction" value={{transactionAmount}}>
                         <iron-icon icon="add" slot="prefix"></iron-icon>
                     </paper-input>
 
@@ -155,8 +155,8 @@ class Dashboard extends PolymerElement {
                         </dom-repeat>
                     </select>
 
-                    <label class="reciept-label"> <h3>Reciept:</h3>
-                    <iron-autogrow-textarea class="reciept-textarea" placeholder="enter a note here" id="transactionReciept" no-label-float label="reciept" value={{reciept}}>
+                    <label class="receipt-label"> <h3>Receipt:</h3>
+                    <iron-autogrow-textarea class="receipt-textarea" placeholder="enter a note here" id="transactionReceipt" no-label-float label="receipt" bind-value={{transactionReceipt}}>
                     </iron-autogrow-textarea>
                     </label>
 
@@ -179,6 +179,9 @@ class Dashboard extends PolymerElement {
         return {
             budget: String,
             message: String,
+            transactionAmount: Number,
+            transactionType: String,
+            transactionReceipt: String,
             months: {
                 type: Array,
                 value: () => ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
@@ -249,35 +252,39 @@ class Dashboard extends PolymerElement {
         .catch(err => console.log(err))
     }
 
-    // addTransaction (e) {
-    //     e.preventDefault();
-    //     // set date using value of form inputs
-    //     let date = new Date();
-    //     date.setFullYear(this.$.transactionYearSelect.value, this.parseMonth(), 1);
-    //     // create addBudget function to simplify POST request to fetch
-    //     const addTransaction = (url = ``, data = {}) => {
-    //         return fetch(url, {
-    //             method: "POST",
-    //             mode: "cors",
-    //             cache: "no-cache",
-    //             credentials: "same-origin",
-    //             headers: {
-    //                 "Content-Type": "application/json; charset=utf-8",
-    //                 "Authorization":"bearer " + Auth.getToken()
-    //             },
-    //             body: JSON.stringify(data),
-    //         })
-    //     }
-    //     // use addBudget function to send POST request with budget payload and use data to send toast to user and rerender budget list
-    //     addTransaction(`https://allowance-api.herokuapp.com/api/budgets/${Auth.getId()}`, {transactionType:this.transaction, transactionAmount: , transactionReciept: , transactionDate:date})
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         this.message = data.message;
-    //         this.$.toast.open();
-    //         this.populateBudgetsProp();
-    //     })
-    //     .catch(err => console.log(err))
-    // }
+    addTransaction (e) {
+        e.preventDefault();
+        // set date using value of form inputs
+        let date = new Date();
+        date.setFullYear(this.$.transactionYearSelect.value, this.parseMonth(), 1);
+        let transactionType = this.$.transactionType.value;
+        let transactionReceipt = this.$.transactionReceipt.value;
+        let transactionAmount = parseInt(this.transactionAmount);
+        console.log(date, transactionType, transactionReceipt, transactionAmount);
+        // create addBudget function to simplify POST request to fetch
+        const addTransaction = (url = ``, data = {}) => {
+            return fetch(url, {
+                method: "POST",
+                mode: "cors",
+                cache: "no-cache",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8",
+                    "Authorization":"bearer " + Auth.getToken()
+                },
+                body: JSON.stringify(data),
+            })
+        }
+        // use addBudget function to send POST request with budget payload and use data to send toast to user and rerender budget list
+        addTransaction(`https://allowance-api.herokuapp.com/api/transactions/${Auth.getId()}`, {transactionType:transactionType, transactionAmount: transactionAmount, transactionReceipt: transactionReceipt, transactionDate:date})
+        .then(res => res.json())
+        .then(data => {
+            this.message = data.message;
+            this.$.toast.open();
+            this.populateBudgetsProp();
+        })
+        .catch(err => console.log(err))
+    }
 
     populateBudgetsProp () {
         this.set('budgets', []);
