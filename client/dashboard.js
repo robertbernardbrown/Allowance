@@ -1,5 +1,6 @@
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 import Auth from "./utils/Auth";
+import "@polymer/iron-autogrow-textarea/iron-autogrow-textarea";
 import '@polymer/polymer/lib/elements/dom-repeat';
 import "@polymer/paper-input/paper-input";
 import "@polymer/iron-icon";
@@ -16,7 +17,6 @@ class Dashboard extends PolymerElement {
             <style>
             main {
                 display: flex;
-                align-items: center;
                 flex-direction: column;
                 background: grey;
             }
@@ -26,7 +26,7 @@ class Dashboard extends PolymerElement {
                 display: flex;
                 flex-direction: column;
                 padding: 2%;
-                border-radius: 25px;
+                border-radius: 5px;
                 background: white;
             }
             .listRow {
@@ -39,12 +39,12 @@ class Dashboard extends PolymerElement {
                 justify-content: center;
                 align-items: center;
                 flex-direction: column;
-                border-radius: 25px;
+                border-radius: 5px;
                 padding: 2%;
                 margin: 20px;
                 background: white;
             }
-            #budgetInput {
+            #budgetInput, #transactionInput {
                 width: 100%
             }
             #budget-btn, #transaction-btn {
@@ -56,14 +56,15 @@ class Dashboard extends PolymerElement {
             #logout-Btn {
                 background: red;
                 color: white;
-                width: 100%;
                 margin-top: 10px;
+                margin-left: 20px;
+                margin-right: 20px;
             }
             .month-row, .budget-row {
                 padding-left: 5px;
                 padding-right: 5px
             }
-            .monthSelect, .yearSelect {
+            .monthSelect, .yearSelect, .typeSelect, .reciept-label, .reciept-textarea {
                 width: 100%
             }
             #budgetFormLabel, #transactionFormLabel {
@@ -71,7 +72,7 @@ class Dashboard extends PolymerElement {
             }
             #interactionPane {
                 display: flex;
-                flex-direction: row;
+                flex-direction: column;
             }
             .overlay {
                 position: absolute;
@@ -129,11 +130,16 @@ class Dashboard extends PolymerElement {
 
                 <form id="addTransactionForm" class="interactionForm">
                     <h2 id="transactionFormLabel">Add a transaction:</h2>
-                    <paper-input id="transactionInput" label="transaction" value={{transaction}}>
+                    <paper-input id="transactionInput" no-label-float label="transaction" value={{transaction}}>
                         <iron-icon icon="add" slot="prefix"></iron-icon>
                     </paper-input>
 
-                    <select class="monthSelect">
+                    <select class="typeSelect" id="transactionType">
+                        <option value="Add">Add</option>
+                        <option value="Subtract">Subtract</option>
+                    </select>
+
+                    <select class="monthSelect" id="transactionMonthSelect">
                         <dom-repeat items="[[months]]">
                             <template is="dom-repeat" items="[[months]]" as="months">
                                 <option value="[[months]]">[[months]]</option>
@@ -141,7 +147,7 @@ class Dashboard extends PolymerElement {
                         </dom-repeat>
                     </select>
 
-                    <select class="yearSelect">
+                    <select class="yearSelect" id="transactionYearSelect">
                         <dom-repeat items="[[years]]">
                             <template is="dom-repeat" items="[[years]]" as="years">
                                 <option value="[[years]]">[[years]]</option>
@@ -149,11 +155,16 @@ class Dashboard extends PolymerElement {
                         </dom-repeat>
                     </select>
 
+                    <label class="reciept-label"> <h3>Reciept:</h3>
+                    <iron-autogrow-textarea class="reciept-textarea" placeholder="enter a note here" id="transactionReciept" no-label-float label="reciept" value={{reciept}}>
+                    </iron-autogrow-textarea>
+                    </label>
+
                     <paper-button on-click="addTransaction" id="transaction-btn" type="submit" raised>Add Transaction</paper-button>
                 </form>
-            </div>
 
-            <button on-click="logOut" id="logout-Btn">Log-Out</button>
+                <button on-click="logOut" id="logout-Btn">Log-Out</button>
+            </div>
 
             <div class="overlay [[loadingStyle]]">
                 <paper-spinner active="[[isLoading]]"></paper-spinner>
@@ -237,6 +248,36 @@ class Dashboard extends PolymerElement {
         })
         .catch(err => console.log(err))
     }
+
+    // addTransaction (e) {
+    //     e.preventDefault();
+    //     // set date using value of form inputs
+    //     let date = new Date();
+    //     date.setFullYear(this.$.transactionYearSelect.value, this.parseMonth(), 1);
+    //     // create addBudget function to simplify POST request to fetch
+    //     const addTransaction = (url = ``, data = {}) => {
+    //         return fetch(url, {
+    //             method: "POST",
+    //             mode: "cors",
+    //             cache: "no-cache",
+    //             credentials: "same-origin",
+    //             headers: {
+    //                 "Content-Type": "application/json; charset=utf-8",
+    //                 "Authorization":"bearer " + Auth.getToken()
+    //             },
+    //             body: JSON.stringify(data),
+    //         })
+    //     }
+    //     // use addBudget function to send POST request with budget payload and use data to send toast to user and rerender budget list
+    //     addTransaction(`https://allowance-api.herokuapp.com/api/budgets/${Auth.getId()}`, {transactionType:this.transaction, transactionAmount: , transactionReciept: , transactionDate:date})
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         this.message = data.message;
+    //         this.$.toast.open();
+    //         this.populateBudgetsProp();
+    //     })
+    //     .catch(err => console.log(err))
+    // }
 
     populateBudgetsProp () {
         this.set('budgets', []);

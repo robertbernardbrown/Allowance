@@ -7,8 +7,12 @@
   "repository": "",
   "author": "Bob",
   "license": "",
+  "scripts": {
+    "watch": "nodemon -e js -w ./client -x polymer build"
+  },
   "dependencies": {
     "@polymer/app-route": "^3.0.0-pre.20",
+    "@polymer/iron-autogrow-textarea": "^3.0.0-pre.21",
     "@polymer/iron-icons": "^3.0.0-pre.21",
     "@polymer/iron-pages": "^3.0.0-pre.21",
     "@polymer/neon-animation": "^3.0.0-pre.21",
@@ -29,6 +33,31 @@
     "depd": "1.1.2",
     "setprototypeof": "1.1.0",
     "statuses": "1.4.0",
-    "http-errors": "1.6.3"
+    "http-errors": "1.6.3",
+    "debug": "3.1.0",
+    "safe-buffer": "5.1.2",
+    "iconv-lite": "0.4.19",
+    "is-glob": "4.0.0",
+    "define-property": "2.0.2",
+    "extend-shallow": "3.0.2",
+    "kind-of": "6.0.2",
+    "is-descriptor": "1.0.2",
+    "isobject": "3.0.1",
+    "is-accessor-descriptor": "1.0.0",
+    "is-data-descriptor": "1.0.0",
+    "is-extendable": "1.0.1",
+    "has-value": "1.0.0",
+    "set-value": "2.0.0",
+    "has-values": "1.0.0",
+    "nopt": "1.0.10",
+    "minimist": "1.2.0",
+    "string-width": "2.1.1",
+    "strip-ansi": "4.0.0",
+    "is-fullwidth-code-point": "2.0.0",
+    "ansi-regex": "3.0.0",
+    "yallist": "3.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.3"
   }
 }
