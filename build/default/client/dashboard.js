@@ -86,7 +86,7 @@ class Dashboard extends PolymerElement {
                 justify-content: center;
                 background: #FFF;
             }
-            .hidden {
+            #hidden {
                 display: none
             }
             </style>
@@ -166,7 +166,7 @@ class Dashboard extends PolymerElement {
                 <button on-click="logOut" id="logout-Btn">Log-Out</button>
             </div>
 
-            <div class="overlay [[loadingStyle]]">
+            <div class="overlay" id="[[loadingStyle]]">
                 <paper-spinner active="[[isLoading]]"></paper-spinner>
             </div>
 
@@ -294,6 +294,7 @@ class Dashboard extends PolymerElement {
 
   populateBudgetsProp() {
     this.set('budgets', []);
+    this.set("loadingStyle", "");
     fetch(`https://allowance-api.herokuapp.com/api/budgets/${Auth.getId()}`, {
       headers: {
         "Authorization": "bearer " + Auth.getToken()

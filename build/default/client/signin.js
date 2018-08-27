@@ -54,7 +54,7 @@ class SigninPage extends PolymerElement {
       signInStatus: {
         type: Boolean,
         notify: true,
-        computed: "isAuthenticated()"
+        value: false
       },
       message: String,
       token: String
@@ -90,6 +90,11 @@ class SigninPage extends PolymerElement {
 
   isAuthenticated() {
     return Auth.isUserAuthenticated();
+  }
+
+  ready() {
+    super.ready();
+    this.set("signInStatus", this.isAuthenticated());
   }
 
   constructor() {

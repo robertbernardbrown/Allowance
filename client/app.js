@@ -36,7 +36,7 @@ class App extends PolymerElement {
                 <signup-page name="sign-up" route="{{subroute}}"></signup-page>
                 <signin-page name="sign-in" sign-in-status="{{_signInStatus}}" route="{{subroute}}"></signin-page>
                 <div name="dashboard">
-                    <login-check>
+                    <login-check sign-in-status="{{_signInStatus}}">
                         <dashboard-page route="{{subroute}}"></dashboard-page>
                     </login-check>
                 </div>
