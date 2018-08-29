@@ -14,12 +14,24 @@ class App extends PolymerElement {
   static get template() {
     return html`
             <style>
-            html, body {
-                height: 100%
+            * {
+                box-sizing: border-box;
             }
+            *:before,
+            *:after {
+                box-sizing: border-box;
+            }
+            html,
             body {
-                display: flex;
-                flex-direction: column;
+                height: 100%;
+                position: relative;
+            }
+           .main-container {
+                min-height: 100vh; /* will cover the 100% of viewport */
+                overflow: hidden;
+                display: block;
+                position: relative;
+                padding-bottom: 100px; /* height of your footer */
             }
             </style>
             <app-location route="{{route}}"></app-location>
@@ -30,18 +42,20 @@ class App extends PolymerElement {
             data="{{routeData}}"
             tail="{{subroute}}"></app-route>
 
-            <header-banner></header-banner>
-            <iron-pages selected="[[routeData.view]]" attr-for-selected="name" default-selected="">
-                <welcome-page name="" route="{{subroute}}"></welcome-page>
-                <signup-page name="sign-up" route="{{subroute}}"></signup-page>
-                <signin-page name="sign-in" sign-in-status="{{_signInStatus}}" route="{{subroute}}"></signin-page>
-                <div name="dashboard">
-                    <login-check sign-in-status="{{_signInStatus}}">
-                        <dashboard-page route="{{subroute}}"></dashboard-page>
-                    </login-check>
-                </div>
-            </iron-pages>
-            <footer-banner></footer-banner>
+            <div class="main-container">
+                <header-banner></header-banner>
+                <iron-pages selected="[[routeData.view]]" attr-for-selected="name" default-selected="">
+                    <welcome-page name="" route="{{subroute}}"></welcome-page>
+                    <signup-page name="sign-up" route="{{subroute}}"></signup-page>
+                    <signin-page name="sign-in" sign-in-status="{{_signInStatus}}" route="{{subroute}}"></signin-page>
+                    <div name="dashboard">
+                        <login-check sign-in-status="{{_signInStatus}}">
+                            <dashboard-page route="{{subroute}}"></dashboard-page>
+                        </login-check>
+                    </div>
+                </iron-pages>
+                <footer-banner></footer-banner>
+            </div>
         `;
   }
 

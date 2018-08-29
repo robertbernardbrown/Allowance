@@ -9,8 +9,10 @@ class FooterBanner extends PolymerElement {
           justify-content: center;
           border-top: 2px solid black;
           align-content: center;
+          background: red;
           width: 100%;
-          flex-shrink: 0;
+          position: absolute;
+          bottom: 0;
         }
         h1 {
           color: black;
