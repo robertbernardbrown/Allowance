@@ -36,6 +36,7 @@ class SigninPage extends PolymerElement {
             <paper-button on-click="signIn" id="submit-btn" type="submit" raised>Sign-In</paper-button>
         </form>
 
+        <a href="/sign-up">Sign-up</a>
         <a href="/dashboard">dashboard</a>
 
         <paper-toast id="toast" text="{{message}}"></paper-toast>

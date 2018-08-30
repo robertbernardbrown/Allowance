@@ -44,6 +44,8 @@ class SignupPage extends PolymerElement {
           <paper-button on-click="signUp" id="submit-btn" type="submit" raised>Sign-Up</paper-button>
         </form>
 
+        <a href="/sign-in">Sign-in</a>
+
         <paper-toast id="toast" text="{{message}}"></paper-toast>
       </main>
     `;
