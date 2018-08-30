@@ -109,7 +109,7 @@ class Dashboard extends PolymerElement {
                         <iron-icon icon="add" slot="prefix"></iron-icon>
                     </paper-input>
 
-                    <select class="monthSelect" id="monthSelect">
+                    <select class="monthSelect" id="budgetMonthSelect">
                         <dom-repeat items="[[months]]">
                             <template is="dom-repeat" items="[[months]]" as="months">
                                 <option value="[[months]]">[[months]]</option>
@@ -117,7 +117,7 @@ class Dashboard extends PolymerElement {
                         </dom-repeat>
                     </select>
 
-                    <select class="yearSelect" id="yearSelect">
+                    <select class="yearSelect" id="budgetYearSelect">
                         <dom-repeat items="[[years]]">
                             <template is="dom-repeat" items="[[years]]" as="years">
                                 <option value="[[years]]">[[years]]</option>
@@ -135,8 +135,8 @@ class Dashboard extends PolymerElement {
                     </paper-input>
 
                     <select class="typeSelect" id="transactionType">
-                        <option value="Add">Add</option>
-                        <option value="Subtract">Subtract</option>
+                        <option value="add">Add</option>
+                        <option value="subtract">Subtract</option>
                     </select>
 
                     <select class="monthSelect" id="transactionMonthSelect">
@@ -216,10 +216,18 @@ class Dashboard extends PolymerElement {
     };
   }
 
-  parseMonth() {
-    for (let i = 0; i < this.months.length; i++) {
-      if (this.$.monthSelect.value === this.months[i]) {
-        return i;
+  parseMonth(budget, transaction) {
+    if (budget) {
+      for (let i = 0; i < this.months.length; i++) {
+        if (this.$.budgetMonthSelect.value === this.months[i]) {
+          return i;
+        }
+      }
+    } else if (transaction) {
+      for (let i = 0; i < this.months.length; i++) {
+        if (this.$.transactionMonthSelect.value === this.months[i]) {
+          return i;
+        }
       }
     }
   }
@@ -228,7 +236,7 @@ class Dashboard extends PolymerElement {
     e.preventDefault(); // set date using value of form inputs
 
     let date = new Date();
-    date.setFullYear(this.$.yearSelect.value, this.parseMonth(), 1); // create addBudget function to simplify POST request to fetch
+    date.setFullYear(this.$.budgetYearSelect.value, this.parseMonth(1), 1); // create addBudget function to simplify POST request to fetch
 
     const addBudget = (url = ``, data = {}) => {
       return fetch(url, {
@@ -249,9 +257,10 @@ class Dashboard extends PolymerElement {
       budget: this.budget,
       budgetDate: date
     }).then(res => res.json()).then(data => {
+      console.log(data);
       this.message = data.message;
       this.$.toast.open();
-      this.populateBudgetsProp();
+      this.populateBudgetsProp(this.getCurrentYear());
     }).catch(err => console.log(err));
   }
 
@@ -259,7 +268,7 @@ class Dashboard extends PolymerElement {
     e.preventDefault(); // set date using value of form inputs
 
     let date = new Date();
-    date.setFullYear(this.$.transactionYearSelect.value, this.parseMonth(), 1);
+    date.setFullYear(this.$.transactionYearSelect.value, this.parseMonth(null, 1), 1);
     let transactionType = this.$.transactionType.value;
     let transactionReceipt = this.$.transactionReceipt.value;
     let transactionAmount = parseInt(this.transactionAmount);
@@ -288,21 +297,30 @@ class Dashboard extends PolymerElement {
     }).then(res => res.json()).then(data => {
       this.message = data.message;
       this.$.toast.open();
-      this.populateBudgetsProp();
+      this.populateBudgetsProp(this.getCurrentYear());
     }).catch(err => console.log(err));
   }
 
-  populateBudgetsProp() {
+  getCurrentYear() {
+    var today = new Date();
+    var dd = "01";
+    var mm = "01";
+    var yyyy = today.getFullYear();
+    today = yyyy + '-' + mm + '-' + dd;
+    return today;
+  }
+
+  populateBudgetsProp(startDate, endDate) {
     this.set('budgets', []);
     this.set("loadingStyle", "");
-    fetch(`https://allowance-api.herokuapp.com/api/budgets/${Auth.getId()}`, {
+    fetch(`https://allowance-api.herokuapp.com/api/balances/${Auth.getId()}/${startDate}/${endDate}`, {
       headers: {
         "Authorization": "bearer " + Auth.getToken()
       }
     }).then(res => res.json()).then(data => {
       this.set("isLoading", false);
       this.set("loadingStyle", "hidden");
-      data.result.map((cur, i) => {
+      data.transactions.map((cur, i) => {
         this.push("budgets", cur);
       });
     }).catch(err => console.log(err));
@@ -315,7 +333,7 @@ class Dashboard extends PolymerElement {
 
   constructor() {
     super();
-    this.populateBudgetsProp();
+    this.populateBudgetsProp(this.getCurrentYear());
   }
 
 }

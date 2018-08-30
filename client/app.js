@@ -31,7 +31,7 @@ class App extends PolymerElement {
                 overflow: hidden;
                 display: block;
                 position: relative;
-                padding-bottom: 100px; /* height of your footer */
+                padding-bottom: 80px; /* height of your footer */
             }
             </style>
             <app-location route="{{route}}"></app-location>
